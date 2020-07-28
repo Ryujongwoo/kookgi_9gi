@@ -41,6 +41,22 @@ void main() {
 			printf("\n");
 		}
 	}
+
+//	마지막 날짜를 출력하고 남는 칸에 다음달 1일의 요일부터 토요일까지 반복하며 다음달의 날짜를 출력한다.
+	if (month == 12) {
+		week = weekDay(year + 1, 1, 1); // 12월
+	}
+	else {
+		week = weekDay(year, month + 1, 1); // 1 ~ 11월
+	}
+	
+	if (weekDay(year, month, lastDay(year, month)) != 6) {
+		start = 1;
+		for (int i = week; i <= 6; i++) {
+			printf(" %2d ", start++);
+		}
+	}
+
 	printf("\n============================\n");
 
 }
