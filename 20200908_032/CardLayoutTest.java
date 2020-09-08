@@ -17,7 +17,7 @@ public class CardLayoutTest extends Frame {
 	Label label3 = new Label("3");
 	
 	public CardLayoutTest() {
-		setTitle("BorderLayout");
+		setTitle("CardLayout");
 		setBounds(800, 100, 400, 500);
 		
 		CardLayout card = new CardLayout();

@@ -1,6 +1,7 @@
 package kr.koreait.layoutTest;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
@@ -15,7 +16,7 @@ public class CardLayoutTest2 extends Frame implements Runnable {
 	CardLayout card = new CardLayout();
 	
 	public CardLayoutTest2() {
-		setTitle("BorderLayout");
+		setTitle("CardLayout");
 		setBounds(800, 100, 400, 500);
 		
 		setLayout(card);
@@ -54,7 +55,12 @@ public class CardLayoutTest2 extends Frame implements Runnable {
 				
 				try { Thread.sleep(100); } catch (InterruptedException e) { e.printStackTrace(); }
 				
+				int r = random.nextInt(256);
+				int g = random.nextInt(256);
+				int b = random.nextInt(256);
+				labels[i].setBackground(new Color(r, g, b));
 				
+				labels[i].setForeground(new Color(random.nextInt(16777216)));
 				
 				card.show(this, 9 - i + "");
 				
