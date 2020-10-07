@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+	<display-name>1007_errorPage</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<!--
+		에러 코드별 에러 메시지 페이지 지정하기
+		xml 파일은 서버가 시작될 때 읽여지기 때문에 xml 파일을 수정했으면 반드시 서버를 다시 실행해야 변경한 내용이 적용된다.
+		<location> 태그에 에러 메시지 페이지를 지정할 때 반드시 에러 메시지 페이지가 위치한 경로를 지정해야 한다.
+		"/" => WebContent 폴더를 의미한다. => web root => 사이트에 접속하는 사용자가 최초로 접속하는 페이지
+	-->
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/errorPage/404errorPage.jsp</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>500</error-code>
+		<location>/errorPage/500errorPage.jsp</location>
+	</error-page>
+	
+	<!--
+		예외(Exception) 종류별 에러 메시지 페이지 지정하기
+		<exception-type> 태그에 예외 종류를 지정할 때 예외 클래스를 반드시 풀 패키지 이름과 함께 써야 한다.
+		http 에러 코드별 에러보다 예외 종류별 에러에 우선권이 있다.
+	-->
+	
+	<error-page>
+		<exception-type>java.lang.ArithmeticException</exception-type>
+		<location>/errorPage/arithmeticException.jsp</location>
+	</error-page>
+	
+</web-app>
+
+
+
+
+
+
+
+
+
