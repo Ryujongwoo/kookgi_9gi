@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function searchId() {
+//		getElementById() 함수는 인수로 지정된 id 속성의 첫 번째 요소 1개를 찾는다.
+		var doc = document.getElementById('test');
+		doc.innerHTML = 'getElementById() 함수는 DOM에서 id 속성을 탐색한다.'
+	}
+
+	function searchName() {
+//		getElementsByName() 함수는 인수로 지정된 name 속성의 모든 요소를 찾는다. => 결과는 배열로 얻어온다.
+		var docs = document.getElementsByName('test');
+//		alert(docs.length);
+
+//		docs[0].value = '홍길동';
+//		docs[1].value = '임꺽정';
+//		docs[2].value = '장길산';
+
+//		일반 for
+//		for (var i = 0; i < docs.length; i++) {
+//			docs[i].value = i;
+//		}
+		
+//		향상된 for => in 사용하기, in을 사용하면 in 뒤에 지정된 객체의 인덱스가 in 앞의 변수에 저장된다.
+//		for (var i in docs) {
+//			docs[i].value = Number(i) + 100;
+//		}
+
+//		향상된 for => of 사용하기, of를 사용하면 of 뒤에 지정된 객체의 인덱스 번째 요소가 of 앞의 변수에 저장된다.
+//		var i = 0
+//		for (var doc of docs) {
+//			doc.value = Number(i++) + 200;
+//		}
+
+//		forEach() 함수 => forEach() 앞의 객체의 첫 번째 요소 부터 마지막 요소까지 차례대로 내부 익명 함수의 인수로 전달한다. 
+		var i = 0
+//		docs.forEach(function(doc) {
+//			doc.value = Number(i++) + 300;
+//		});
+
+//		화살표 함수(arrow function) => ES6에서 추가된 기능이다.
+//		익명 함수를 사용할 때 function 키워드를 생략하고 ()안에 인수만 적은 후 {} 블록대신 실행할 문장을 '=>' 뒤에 코딩한다.
+		docs.forEach((doc) => doc.value = Number(i++) + 400);
+	}
+	
+	function searchTagName() {
+//		getElementsByTagName() 함수는 인수로 지정된 모든 태그 요소를 찾는다.
+//		getElementsByTagName() 형태로 실행하면 모든 태그 요소를 배열로 얻어오고 getElementsByTagName()[index] 형태로 실행하면 지정된 index에
+//		해당되는 요소만 얻어온다. getElementsByName() 함수도 동작 원리는 getElementsByTagName()와 같다.
+
+		var docs = document.getElementsByTagName('p');
+		for (var i = 0; i < docs.length; i++) {
+			docs[i].style.backgroundColor = 'yellow';
+		}
+
+		var doc = document.getElementsByTagName('p')[3];
+		doc.style.backgroundColor = 'tomato';
+	}
+	
+</script>
+
+</head>
+<body>
+
+<p>
+	DOM(Document Object Model) 탐색 함수
+</p>
+
+<p id="test" onclick="searchId()">
+	1. 태그의 id 속성을 탐색한다.<br/>
+	같은 화면에 여러개의 id가 있다면 첫 번째 요소 1개만 선택된다.
+</p>
+
+<p id="test" onclick="searchName()">
+	2. 태그의 name 속성을 탐색한다.<br/>
+	같은 화면에 같은 name 속성을 가지는 태그가 여려개 나올 수 있으므로 여러개가 선택된다. => nodelist<br/>
+	<input type="text" name="test"/><br/>
+	<input type="text" name="test"/><br/>
+	<input type="text" name="test"/>
+</p>
+
+<p onclick="searchTagName()">
+	3. 태그의 이름 속성을 탐색한다.<br/>
+	같은 화면에 같은 이름의 태그가 여러개 나올 수 있으므로 여러개가 선택된다. => nodelist<br/>
+</p>
+
+</body>
+</html>

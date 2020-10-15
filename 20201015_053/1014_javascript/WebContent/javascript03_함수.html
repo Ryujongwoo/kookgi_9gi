@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script type="text/javascript">
+
+	function func1() {
+		alert('명시적 함수');
+	}
+
+//	변수 = function () { } => 익명 함수
+//	익명 함수를 실행하려면 익명 함수가 할당된 변수를 함수처럼 사용하면 된다.
+	var func2 = function () {
+		alert('익명 함수');
+	}
+	
+	function func3() {
+//		literalTest() 함수를 호출한다.
+//		literalTest() 함수의 인수 literal로 익명 함수 function (msg) { alert(msg); }가 전달된다.
+		literalTest(function (msg) {
+			alert(msg);
+		});
+	}
+	function literalTest(literal) {
+//		함수의 인수 literal로 넘어온 익명 함수의 인수 msg로 '함수 리터럴 입니다.'가 전달되서 실행된다.
+		literal('함수 리터럴 입니다.');
+	}
+	
+//	arguments 객체는 함수로 전달되는 인수의 목록이 저장되는 Array(배열) 형태의 객체이다.
+//	자바스크립트 함수는 함수를 호출할 때 인수의 목록을 arguments 객체에 저장한 후 함수의 인수 개수만큼
+//	반복하여 arguments 객체에 저장된 인수 목록을 차례대로 넘겨준다.
+	function varTest(str1) {
+		console.log('str1: ' + str1);
+		console.log('함수로 전달되는 데이터의 개수: ' + arguments.length);
+		for (var i = 0; i < arguments.length; i++) {
+			console.log('arguments[' + i + ']: ' + arguments[i]);
+		}
+	}
+	
+//	클로저로 사용할 함수
+	function closureTest(val) {
+		function addVal(msg) {
+			alert(val + " : " + msg);
+		}
+//		반드시 클로저 내브에 정의한 함수를 리턴시켜야 클로저 내부의 함수가 실행된다.
+		return addVal;
+	}
+//	클로저를 호출할 때 인수로 입력한 값이 클로저의 인수로 전달되고 클로저가 호출될 때 인수가 클로저
+//	내부 함수의 인수로 전달된다.
+	var goodEdu = closureTest('자바스크립트');
+	
+</script>
+
+<body>
+
+<h1>함수의 종류</h1>
+
+<p onclick="func1()">1. 명시적 함수 => 이름이 있는 함수</p>
+<p onclick="func2()">2. 익명 함수 => 이름이 없는 함수</p>
+<p onclick="func3()">3. 함수 리터럴 => 함수의 인수로 익명 함수를 전달한다.</p>
+
+<!-- varTest() 함수가 호출될 때 인수 목록이 arguments 객체에 저장된 후 함수의 인수로 전달된다. -->
+<h1 onclick="varTest('홍길동', '임꺽정', '장길산', '일지매')">arguments 객체</h1>
+
+<h1>클로저</h1>
+함수 내부에서 함수를 정의해 사용한다.
+좋아하는 과목 <input type="text" id="good"/>
+<input type="button" value="클릭" onclick="goodEdu(good.value)">
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
