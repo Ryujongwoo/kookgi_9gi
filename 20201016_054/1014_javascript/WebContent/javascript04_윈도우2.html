@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function req() {
+//		alert('자식이에요');
+//		opener : 부모 윈도우를 의미한다.
+//		부모 윈도우의 데이터를 자식 윈도우에서 사용하기 위해 얻어온다.
+		var parentValue = opener.document.getElementById('parentId');
+//		alert(parentValue.value);
+//		부모 윈도우에서 가져온 데이터를 자식 윈도우의 객체에 넣어준다.
+		document.getElementById('childId').value = parentValue.value;
+		document.getElementById('childId').focus();
+	}
+	
+	function send() {
+//		자식 윈도우에서 부모 윈도우로 넘겨줄 데이터를 얻어온다.
+		var childValue = document.getElementById('childId').value;
+//		alert(childValue);
+//		부모 원도우의 id 속성이 name인 텍스트 상자로 자식 윈도우의 데이터를 넘겨준다.
+		opener.document.getElementById('name').value = childValue;
+
+//		부모 윈도우의 name 속성이 name2인 텍스트 상자로 자식 윈도우의 데이터를 넘겨준다.
+//		getElementById() 함수를 사용할 경우 id 속성은 문서에 딱 1번만 나올 수 있기 때문에 함수에 Element가 단수형
+//		으로 작성되어 있지만 name 속성은 같은 값을 여러개 사용할 수 있으므로 getElementsByName() 함수를 사용해서 
+//		배열로 얻어와서 사용한다.
+		opener.document.getElementsByName('name2')[0].value = childValue;
+		
+//		부모 윈도우의 <h1> 태그 내부로 데이터를 넘겨준다.
+//		태그도 name 속성의 값처럼 같은 태그가 여러개 나올 수 있기 때문에 getElementsByTagName() 함수를 사용해서
+//		배열로 얻어와서 사용한다.
+		opener.document.getElementsByTagName('h1')[1].innerHTML = childValue;
+		
+		self.close();
+	}
+
+</script>
+
+</head>
+<body onload="req()">
+
+ID : <input id="childId" type="text" name="test"/>
+<input type="button" value="부모 창으로 전달" onclick="send()">
+<!-- self : 현재 윈도우를 의미한다. -->
+<input type="button" value="창닫기" onclick="self.close()">
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
