@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	var ids = ['aaa', 'bbb', 'ccc', 'ddd'];		// 배열
+
+	function confirmChk() {
+//		아이디 중복 검사를 하기 위해 입력한 아이디를 얻어온다.
+		var id = document.getElementsByName('id')[0].value;
+//		alert(id);
+//		아이디 중복 검사 결과 메시지를 출력할 <div> 태그를 얻어온다.
+		var div = document.getElementsByTagName('div')[0];
+//		div.innerHTML = id;
+//		입력한 아이디가 배열에 저장된 아이디 목록에 존재하는가 검사한다.
+//		indexOf() : 인수로 지정된 데이터가 배열의 몇 번째 index에 존재하는가 리턴한다. 없으면 -1을 리턴한다.
+//		alert(ids.indexOf(id));
+		if (ids.indexOf(id) != -1) {
+			div.innerHTML = '<b>' + id + '는(은) 사용할 수 없는 아이디 입니다.</b>';
+			document.getElementsByName('id')[0].value = '';
+			document.getElementsByName('id')[0].focus();
+		} else {
+			div.innerHTML = '<b>' + id + '는(은) 사용할 수 있는 아이디 입니다.</b> ' + 
+					'<input type="button" value="사용하기" onclick="insertId(\'' + id + '\')"/>';
+		}
+	}
+	
+	function insertId(id) {
+//		alert(id);
+		opener.document.getElementsByName('id')[0].value = id;
+		opener.document.getElementsByName('password')[0].focus();
+		self.close();
+	}
+	
+</script>
+
+</head>
+<body>
+
+<table>
+	<tr>
+		<td>아이디</td>
+		<td>
+			<input type="text" name="id"/>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="button" value="중복확인" onclick="confirmChk()"/>
+			<input type="button" value="닫기" onclick="self.close()"/>
+		</td>
+	</tr>
+</table>
+
+<!-- 아이디 중복 검사 결과를 출력할 div 태그 -->
+<div></div>
+
+</body>
+</html>
+
+
+
+
+

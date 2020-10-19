@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function searchParents() {
+//		alert('searchParents()');
+		var child = document.getElementsByTagName('p')[0];
+		console.log(child.innerHTML);
+//		parentNode : 탐색된 element의 부모 element를 탐색한다.
+		parentDiv = child.parentNode;
+//		nodeName : 탐색된 element의 태그 이름을 얻어온다.
+		console.log(parentDiv.nodeName);
+		parentDiv.style.backgroundColor = 'pink';
+	}
+
+	function searchChilds() {
+//		alert('searchChilds()');
+		var div = document.getElementsByTagName('div')[0];
+		console.log(div);
+		console.log(div.innerHTML);
+//		div.innerHTML = 'jlkfsdjklfsdjklsdfk';
+//		childNodes : 탐색된 element의 자식 element를 탐색해서 배열로 리턴한다.
+		var childs = div.childNodes;
+		console.log(childs);
+		console.log(childs.length);
+		console.log(childs[1].nodeName);
+		childs[1].style.backgroundColor = 'red';
+		childs[3].style.backgroundColor = 'green';
+		childs[5].style.backgroundColor = 'blue';
+	}
+	
+</script>
+
+</head>
+<body>
+
+<div>
+	나는 div
+	<p>child1</p>
+	<p>child2</p>
+	<p>child3</p>
+</div>
+<input type="button" value="부모탐색" onclick="searchParents()"/>
+<input type="button" value="자식탐색" onclick="searchChilds()"/>
+<hr/>
+
+<h2>test1을 포함하고 있는 div 태그를 찾아 배경색 변경하기 - parentNode</h2>
+<h2>마지막 div 태그에 포함된 test4의 폰트 크기를 20pt로 변경하기 - childNodes</h2>
+
+<div onclick="testSearch()">적용</div>
+<div>
+	<p>test1</p>
+	<p>test2</p>
+</div>
+<div>
+	<p>test3</p>
+	<p>test4</p>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

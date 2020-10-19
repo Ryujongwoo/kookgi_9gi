@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+//	객체 선언1 => function 형식 사용
+	function Class1() {
+//		객체를 구성하는 변수를 선언할 때 앞에 this를 붙여주면 객체 외부에서 접근이 가능(public)하고 this를 붙이지 않으면 객체 외부에서 접근이
+//		불가능(private)하다.
+		this.name = '홍길동';
+		age = 20;
+		this.getAge = function() {
+			return age;
+		}
+	}
+	
+//	prototype => 객체 외부에서 정의하는 함수
+//	객체이름.prototype.변수이름 = 익명함수;
+	Class1.prototype.printClass1 = function() {
+		console.log(name + '님은 ' + age + '살 입니다.');
+	};
+
+//	객체 선언2 => JSON 형식 사용
+	var Class2 = {
+		name: '임꺽정',
+		age: 35,
+		getAge: function() {
+//			함수 내부에서 JSON 형식을 사용한 객체의 key를 참조하려면 반드시 객체 이름에 '.'을 찍어서 접근해야 한다.
+			return Class2.age;
+		}
+	};
+	
+	function objectTest() {
+		var class1 = new Class1();		// Class1의 객체가 생성된다.
+		console.log('class1.name: ' + class1.name);
+		console.log('class1.age: ' + class1.age);				// age는 this를 붙이지 않았으므로 객체 외부에서 접근할 수 없다.
+		console.log('class1.getAge(): ' + class1.getAge());
+		class1.printClass1();
+		console.log('==================================================');
+		
+		console.log(Class2.name + '님은 ' + Class2.age + '살 입니다.');
+		console.log(Class2.getAge());
+		console.log('==================================================');
+		
+		var myJSON = '{"name": "John", "age": 31, "city": "New York"}';		// JSON을 가장한 문자열
+//		JSON.parse() => 인수로 지정된 문자열을 JSON 객체로 변환한다.
+		var obj = JSON.parse(myJSON);
+		document.getElementById('demo').innerHTML = obj.name;
+	}
+
+</script>
+
+</head>
+<body>
+
+<input type="button" value="객체" onclick="objectTest()">
+<p id='demo'></p>
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function locationTest() {
+//		alert('locationTest()');
+//		location.href='http://www.naver.com';
+
+//		location 객체의 assign() 함수는 location.href와 같은 기능이 실행된다. => 뒤로 돌아갈 수 있다.
+//		location.assign('http://www.naver.com');
+
+//		location 객체의 replace() 함수는 assign(), location.href와 같이 인수로 지정된 주소로 이동하지만 돌아가기를 할 수 없다.
+		location.replace('http://www.naver.com');
+	}
+
+</script>
+
+</head>
+<body>
+
+<a href="http://www.naver.com">네이버로 이동</a><br/>
+<input type="button" value="네이버로 이동" onclick="location.href='http://www.naver.com'"/><br/>
+<input type="button" value="네이버로 이동" onclick="locationTest()"/>
+
+</body>
+</html>

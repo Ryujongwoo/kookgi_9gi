@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function evalTest() {
+		var obj = document.getElementsByName('evalue')[0];
+		console.log(obj);
+		console.log(obj.value);
+		console.log(typeof obj.value);
+		
+		if (confirm('연산식을 올바르게 입력했나요?\n입력한 연산식: ' + obj.value)) {
+//			eval() 함수는 인수로 지정된 문자열인 자바스크립트 코드를 실행한다.
+//			alert('계산을 시작합니다.');
+//			eval('alert("계산을 시작합니다.")');
+			document.getElementsByTagName('span')[0].innerHTML = '<h2>계산 결과 => ' + eval(obj.value) + '</h2>';
+		} else {
+			obj.value = '';
+			obj.focus();
+		}
+	}
+
+	function caluTest() {
+		var docs = document.querySelectorAll('.a');
+		var str = '';
+		for (var doc of docs) {
+			console.log(doc.value);
+			str += doc.value;
+		}
+		console.log(str);
+		document.getElementsByTagName('span')[1].innerHTML = '<h2>계산 결과 => ' + eval(str) + '</h2>';
+	}
+	
+</script>
+
+</head>
+<body>
+
+<h2>문자열로 된 코드를 읽어 자바스크립트로 실행하기</h2>
+<input type="text" name="evalue" placeholder="예) 5 + 10"/>
+<input type="button" value="계산하기" onclick="evalTest()"/><br/>
+<span></span>
+<hr/>
+
+<input class="a" type="number"/>
+<input class="a" type="text" list='caluList'/>
+<input class="a" type="number"/>
+<input type="button" value="계산하기" onclick="caluTest()"/><br/>
+<span></span>
+
+<datalist id="caluList">
+	<option value="+"/>
+	<option>-</option>
+	<option>*</option>
+	<option>/</option>
+</datalist>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
