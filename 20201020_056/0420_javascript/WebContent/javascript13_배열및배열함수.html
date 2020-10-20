@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function singleArr() {
+//		배열 선언 방법
+		var arrayObj = new Array();						// 배열 객체만 선언한다. 크기가 0이다.
+		var arrayObj2 = new Array(5);					// 인수로 지정된 크기를 가지는 배열 객체를 선언한다.
+		var arrayObj3 = new Array(1, 2, 3, 4, 5);		// 인수의 개수만큼 배열을 만들고 초기화 시킨다.
+		var arrayList = ["value1", "value2", 3, 4];		// []안에 지정한 데이터 개수만큼 배열을 선언하고 초기화 시킨다.
+		alert(arrayObj3);
+	}
+
+	function multiArr() {
+		var arrRow = 3;		// 행의 개수
+		var arrCol = 3;		// 열의 개수
+		var arr = new Array(arrRow);		// 행
+//		행의 개수만큼 반복하며 열을 만든다.
+		for(var i = 0; i < arr.length; i++) {
+			arr[i] = new Array(arrCol);		// 열
+		}
+		
+		arr[0][0] = "apple";
+		arr[0][1] = "banana";
+		arr[0][2] = "melon";
+		
+		arr[1][0] = 100;
+		arr[1][1] = 200;
+		arr[1][2] = 300;
+		
+		arr[2][0] = ["홍길동", "바보"];
+		arr[2][1] = ["명훈이", "미남"];
+		arr[2][2] = ["4월인데", "춥다"];
+		
+//		alert(arr);
+		alert(arr[2][1][0]);
+	}
+	
+	function joinTest() {
+		var fruit = ["apple", "banana", "lemon", "melon"];
+		var arr = ["1", "2", "3", "4"];
+//		배열끼리 덧셈 연산을 실행하면 배열을 합쳐준다.
+		var add = fruit + arr;
+		var result = fruit.join("|");
+		alert(result);
+	}
+	
+	function sortTest1() {
+		var arr = ["a", "c", "b", null, 5, 100];	// 문자열화 된 숫자 => 문자 => null
+//		sort() : 사전식 정렬, 오름차순 정렬, 무조건 문자 데이터로 취급해서 코드값 순서로 정렬된다.
+		arr.sort();
+		alert(arr);
+	}
+	
+	function sortTest2() {
+		var arr = [1, 4, 3, 8, 9, 7, 10];
+//		arr.sort();				// 무조건 문자열로 취급해서 정렬한다.
+		arr.sort(compareNum);	// 인수로 지정된 함수의 정렬 방식으로 정렬한다. 
+		alert(arr);
+	}
+	
+//	숫자의 크기를 비교할 수 있는 기능을 하는 함수를 만든다. => 정렬 방식을 지정한다.
+	function compareNum(a, b) {
+		return a - b;		// 오름차순
+//		return b - a;		// 내림차순
+	}
+	
+	function reverseTest() {
+		var arr = [1, 4, 3, 8, 9, 7, 10];
+		arr.sort(compareNum);
+//		오름차순 정렬을 실행한 후 reverse() 함수를 실행하면 배열 순서가 뒤집히면서 내림차순으로 정렬한 효과가 난다.
+		arr.reverse();
+		alert(arr);
+	}
+	
+	function pushShiftPop() {
+		var queue = new Array();
+//		push() : 배열의 마지막에 데이터를 추가한다.
+		queue.push("first");
+		queue.push("second");
+		queue.push("third");
+		queue.push(5);
+		queue.push(100);
+		alert(queue);
+//		shift() : 배열의 맨 앞의 데이터를 얻어온다. 기존 배열의 데이터가 제거된다.
+		var a = queue.shift();
+		alert(a + " => " + queue);
+//		pop() : 배열의 맨 뒤의 데이터를 얻어온다. 기존 배열의 데이터가 제거된다.
+		var b = queue.pop();
+		alert(b + " => " + queue);
+	}
+	
+	function sliceTest() {
+		var arr = new Array(1, 2, 3, 4, 5);
+//		slice(a, b) : 배열의 a번째 index 부터 b-1번째 index 까지 추출해서 새 배열을 만든다.
+		var arr1 = arr.slice(1, 3);
+//		alert(arr1);
+		arr1[0] = 100;
+//		alert(arr1);
+		
+		var arr2 = new Array(new Array(1, 2), new Array(3, 4), new Array(5, 6), new Array(7, 8));
+		var arr3 = arr2.slice(1, 3);
+		alert(arr3);
+	}
+	
+</script>
+
+</head>
+<body>
+
+	<h2>배열 객체</h2>
+	<ul>
+		<li onclick="singleArr()">1차원 배열</li>
+		<li onclick="multiArr()">다차원 배열</li>
+		<li onclick="joinTest()">join() 함수</li>
+		<li>배열 정렬
+			<ul>
+				<li onclick="sortTest1()">sort() : 문자 정렬</li>
+				<li onclick="sortTest2()">sort() : 숫자 정렬</li>
+				<li onclick="reverseTest()">reverse() : 배열 순서 뒤집기</li>
+			</ul>
+		</li>
+		<li onclick="pushShiftPop()">배열의 데이터 입출력
+			<ul>
+				<li>push()</li>
+				<li>shift()</li>
+				<li>pop()</li>
+			</ul>
+		</li>
+		<li onclick="sliceTest()">배열의 일부분을 새 배열로 만든다.</li>
+	</ul>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

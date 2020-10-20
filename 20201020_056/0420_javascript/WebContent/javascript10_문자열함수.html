@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function strTest1() {
+		var str1 = "string";
+		var str2 = "function";
+		var str3 = str1 + str2;
+		alert(str3);
+//		concat() : 문자열에 인수로 지정한 문자열을 합친다.
+		var newStr = str1.concat("test", "java", "script");
+		alert(newStr);
+//		join() : 인수로 지정한 문자열을 삽입한다.
+		var joinStr = ["java", "script", "good"].join("^^;");
+		alert(joinStr);
+	}
+
+	function strTest2() {
+		var num = 12.34;
+		var bool = true;
+		var str = "문자열";
+		alert(num + bool + str);
+		var result = num + bool + str;
+		alert(result);
+	}
+	
+	function strTest3() {
+		var str = prompt("니 이름이 뭐니?", "숫자는 넣지 마세요");
+		var span = document.getElementsByTagName("span")[0];
+//		if(!isNaN(Number(str))) {	// 함수로
+		if(str.match(/[0-9]/)) {	// 정규식으로
+			alert("숫자는 입력하지 마세요");
+		} else if(str === "홍길동") {
+			span.innerHTML = str + "님 어서오세요";
+		} else {
+			span.innerHTML = "너는 누구냐??";
+		}
+		
+//		==, != : 데이터만 비교한다. 숫자, 문자를 구분하지 않는다.
+//		===, !== : 데이터와 자료형까지 비교한다. 숫자, 문자를 구분한다.
+		
+		var num = 10;		// number
+//		alert(typeof num);
+		str = "10";			// string
+//		alert(typeof str);
+		
+		if(num == str) {
+			alert("타입은 비교하지 않고 데이터만 비교해서 같다.")
+		} else {
+			alert("타입은 비교하지 않고 데이터만 비교해서 다르다.")
+		}
+		
+		if(num === str) {
+			alert("타입도 비교하고 데이터도 비교해서 같다.")
+		} else {
+			alert("타입도 비교하고 데이터도 비교해서 다르다.")
+		}
+		
+		var oldStr = "홍길동";
+		var newStr = new String("홍길동");
+		
+		if(oldStr == newStr) {
+			alert("같다.");
+		} else {
+			alert("다르다.");
+		}
+		
+//		new를 사용해서 만든 문자열은 내용이 같더라도 ===를 사용하면 다른 값으로 취급된다.
+		if(oldStr === newStr) {
+			alert("같다.");
+		} else {
+			alert("다르다.");
+		}
+	}
+	
+	function strTest4() {
+//		indexOf() : 왼쪽 부터 검색해 인수로 지정된 문자열의 index를 리턴한다.
+//		lastIndexOf() : 오른쪽 부터 검색해 인수로 지정된 문자열의 index를 리턴한다.
+//		indexOf(), lastIndexOf() 모두 인수로 지정된 문자열이 없으면 -1을 리턴한다.
+		var name = "홍길동 임꺽정 장길산 일지매 홍길동";
+		var str = prompt("검색할 이름은?");
+		alert("indexOf()로 검색한 index : " + name.indexOf(str));
+		alert("lastIndexOf()로 검색한 index : " + name.lastIndexOf(str));
+	}
+	
+	function strTest5() {
+		var str = "2020-04-01 (수) 2020-03-09";
+		var fSpace = str.indexOf(" ");		// 10
+		var eSpace = str.lastIndexOf(" ");	// 14
+//		substring(a, b) : index가 a번째 문자부터 b-1번째 문자까지 추출한다.
+//		substring(a) : index가 a번째 문자부터 끝까지 추출한다.
+		var sola = str.substring(0, fSpace);
+		var lunar = str.substring(eSpace + 1);
+		alert("양력 : " + sola + "은 음력으로 " + lunar + " 입니다.");
+	}
+	
+	function strTest6() {
+		var str = "2020-04-01 (수) 2020-03-09";
+//		split() : 인수로 지정된 문자열을 경계로 문자열을 나눈다.
+		var obj = str.split(" ");
+//		alert(obj.length);
+//		for(var i = 0; i < obj.length; i++) {
+//			alert(obj[i]);
+//		}
+		alert("양력 : " + obj[0] + "은 음력으로 " + obj[2] + " 입니다.");
+	}
+	
+</script>
+
+</head>
+<body>
+
+	<p>
+		문자열 합치기
+		<input type="button" value="실행" onclick="strTest1()"/>
+	</p>
+
+	<p>
+		서로 다른 자료형 합치기
+		<input type="button" value="실행" onclick="strTest2()"/>
+	</p>
+
+	<p>
+		문자열 비교하기
+		<input type="button" value="실행" onclick="strTest3()"/>
+		<span></span>
+	</p>
+
+	<p>
+		문자열 찾기
+		<input type="button" value="실행" onclick="strTest4()"/>
+		<span></span>
+	</p>
+
+	<p>
+		문자열 추출
+		<input type="button" value="실행" onclick="strTest5()"/>
+		<span></span>
+	</p>
+
+	<p>
+		문자열 자르기
+		<input type="button" value="실행" onclick="strTest6()"/>
+		<span></span>
+	</p>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

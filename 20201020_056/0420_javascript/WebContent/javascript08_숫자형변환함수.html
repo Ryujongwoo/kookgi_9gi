@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function numTest(n) {
+//		alert(typeof n);		// string
+//		alert("123" + "101"); 	// 123101, 연결
+//		alert("123" + 102);		// 123102, 연결
+//		alert(123 + "103");		// 123103, 연결
+//		자바스크립트는 문자열과 문자열, 문자열과 숫자, 숫자와 문자열의 덧셈 연산은 문자열로 처리되므로 덧셈 연산을 하기 위해서 문자열을
+//		숫자(정수, 실수 구분하지 않고)로 변환 후 연산해야 한다.
+//		Number() 함수는 인수로 지정된 문자열을 숫자로 바꿔준다. => 정수, 실수를 구분하지 않는다.
+		alert(Number(n) + 10);			
+	}
+
+	function intTest(n) {
+		alert(parseInt(n) + 10);
+	}
+	
+	function floatTest(n) {
+		alert(parseFloat(n) + 10);
+	}
+	
+</script>
+
+</head>
+<body>
+
+	<p>
+		<h2>문자열을 숫자로 변환하는 함수 => Number() => 정수, 실수를 구분하지 않는다.</h2>
+		<input type="text" id="num"/>
+		<input type="button" value="확인" onclick="numTest(num.value)"/>
+	</p>
+
+	<p>
+		<h2>문자열을 숫자로 변환하는 함수 => parseInt() => 정수로 변환한다.</h2>
+		<input type="text" id="int"/>
+		<input type="button" value="확인" onclick="intTest(int.value)"/>
+	</p>
+
+	<p>
+		<h2>문자열을 숫자로 변환하는 함수 => parseFloat() => 실수로 변환한다.</h2>
+		<input type="text" id="float"/>
+		<input type="button" value="확인" onclick="floatTest(float.value)"/>
+	</p>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

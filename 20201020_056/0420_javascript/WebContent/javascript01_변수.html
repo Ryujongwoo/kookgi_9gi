@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+//	변수 선언 방식
+//	우선, var는 변수 선언 방식에 있어서 큰 단점을 가지고 있다.
+//	var name = 'bathingape'
+//	console.log(name)	// bathingape
+//	var name = 'javascript'
+//	console.log(name)	// javascript
+//	변수를 한 번 더 선언했음에도 불구하고, 에러가 나오지 않고 각기 다른 값이 출력되는 것을 볼 수 있다.
+//	이는 유연한 변수 선언으로 간단한 테스트에는 편리 할 수 있겠으나, 코드량이 많아 진다면 어디에서 어떻게 사용 될지도 파악하기 힘들뿐더러 값이 
+//	바뀔 우려가 있다. 그래서 ES6 이후, 이를 보완하기 위해 추가 된 변수 선언 방식이 let 과 const 이다.
+
+//	위의 코드에서 변수 선언 방식만 바꿔보자.
+//	let name = 'bathingape'
+//	console.log(name)	// bathingape
+//	let name = 'javascript'
+//	console.log(name) 
+//	Uncaught SyntaxError: Identifier 'name' has already been declared
+//	name이 이미 선언 되었다는 에러 메세지가 나온다.(const도 마찬가지)
+
+//	변수 재선언이 되지 않는다. 그렇다면 let 과 const 의 차이점은 무엇일까? 이 둘의 차이점은 immutable 여부이다.
+//	let은 변수에 재할당이 가능하다. 그렇지만, const는 변수 재선언, 변수 재할당 모두 불가능하다.
+
+
+//	전역변수 : 함수 외부에서 선언한 변수로 모든 함수에서 공통적으로 변수에 저장된 값을 사용할 수 있다.
+//             var를 붙이지 않고 변수를 선언하면 전역 변수로 인식된다.
+//	지역변수 : 함수 내부에서 선언한 변수로 선언된 함수 내부({}에 상관없이)에서만 변수에 저장된 값을 사용할 수 있다.
+//			   전역변수와 같은 이름의 지역 변수를 사용하려면 변수를 선언할 때 반드시 var를 붙여야 지역변수로 인식된다.
+
+	var variable = 10;		// 전역변수
+
+	function scopeTest() {
+		var a = 0;
+		if(true) {
+			var b = 5;
+			console.log("i => " + i);		// undefined
+			for(var i = 0; i < 5; i++) {
+				console.log("i => " + i);
+			}
+			console.log("i => " + i);		// 함수 내부라면 함수가 선언된 {} 블록과는 관계없이 변수를 사용할 수 있다.
+		}
+		console.log("a => " + a);
+		console.log("b => " + b);
+	}
+	
+	function test1() {
+		variable += 5;
+//		getElementById("id") : 문서 내의 인수로 지정된 id를 가지는 태그를 얻어온다.
+//		innerHTML : 얻어온 태그의 내부를 의미한다.
+//		document.getElementById("var1").innerHTML = "꺄~~~~~~~~~~~~~~~";
+		document.getElementById("var1").innerHTML = "<b style='color: red; background: yellow'>" + variable + "</b>";
+	}
+	
+	function test2() {
+//		함수 내부에서 var variable = 5;와 같이 지역변수가 선언되면 함수 내부의 variable라는 이름을 가지는 변수는 지역변수로 취급되지만 지역변수가
+//		선언되지 않으면 전역변수로 취급되서 전역변수가 선언되지 않았으면 에러가 발생된다.
+//		undefiend => 변수가 정의되지 않았다.
+		alert(variable);
+//		함수 내부에서만 사용할 지역변수는 변수 앞에 var를 붙여서 선언하면 된다.
+//		변수 선언 위치는 크게 중요하지 않고 var를 붙인 변수가 선언되면 변수가 선언된 위치에 관계없이 지역변수로 인식된다.
+		var variable = 5;		// 나중에 참조 할 수 있다. 따라서 선언전에 사용하면 undefiend로 처리된다.
+		alert(variable);
+//		test3() 함수에서 정의한 지역변수 variable2를 사용하면 지역변수는 선언된 함수 내부에서만 사용할 수 있으므로 undefiend로 처리된다.
+		alert(variable2);
+	}
+
+	function test3() {
+		var variable2 = variable + 3;
+		document.getElementById("var2").innerHTML = "<b style='color: red; background: yellow'>" + variable2 + "</b>";
+	}
+	
+	function test4() {
+		var variable3 = "문자";
+//		typeof : 변수의 데이터 타입을 얻어온다.
+//		alert(typeof variable3);		// string
+		variable3 = 5;
+//		alert(typeof variable3);		// number
+		variable3 = [1, 3, 5];
+//		alert(typeof variable3);		// 객체(배열), object
+		variable3 = true;
+//		alert(typeof variable3);		// boolean
+		variable3 = null;
+//		alert(typeof variable3);		// null, object
+		variable3 = function(name) {	// 익명 함수
+			alert(name + "님 어서오세요");
+			return name;
+		}
+//		alert(typeof variable3);		// function
+//		익명 함수 실행하기 => 익명 함수가 저장된 변수에 함수로 전달할 인수를 넣어서 실행한다. => 변수가 함수처럼 사용된다.
+//		variable3("홍길동");
+		result = variable3("임꺽정");
+		alert("result : " + result);
+	}
+	
+</script>
+
+</head>
+<body>
+
+	<h1>자바스크립트 변수</h1>
+	<button onclick="scopeTest()">변수 입력</button>
+
+	<!--
+		<dl>태그는 definition list(정의 목록)의 약자로, 사전처럼 용어를 설명하는 목록을 만듭니다.
+		<dt>는 definition term(정의 용어)의 약자로, 정의되는 용어의 제목을 넣을 때 사용합니다.
+		<dd>는 definition description(정의 설명)의 약자로, 용어를 설명하는 데 사용합니다.
+	-->
+
+	<dl>
+		<dt>변수명 작성방법</dt>
+			<dd>1. 대문자와 문자를 구분한다.</dd>	
+			<dd>2. 영문자로 시작해야 한다.(특수문자 중 _와 $로 시작 가능)</dd>
+			<dd>3. 자바스크립트와 약속된 예약어는 사용할 수 없다.</dd>
+			<br/>
+		<dt>변수의 범위</dt>
+			<dd>
+				1. 전역변수는 자바스크립트의 최상위 객체인 window 객체에 포함되는 변수로 모든 함수에서 공통적으로 사용할 수 있다.
+				=> 변수에 저장된 값이 계속 유지된다.
+				<button onclick="test1()">확인</button>
+			</dd>
+			<!-- 전역변수 variable에 저장된 값을 출력한다. -->
+			<dd id="var1"></dd>
+			<dd>
+				2. 지역변수는 함수나 객체 내부에서 선언되고 함수나 객체가 종료되는 시점에서 메모리에서 소멸된다.
+				<button onclick="test2()">지역 scope</button>
+				<button onclick="test3()">지역변수 확인</button>
+			</dd>
+			<dd id="var2"></dd>
+		<dt>변수의 선언과 저장</dt>
+			<dd>1. var 예약어를 사용해서 변수를 선언한다. var 붙이기 싫으면 안붙여도 변수는 선언된다.</dd>
+			<dd>
+				2. 변수 데이터 타입은 변수에 저장되는 데이터의 타입에 따라 자동으로 정의된다.
+				<button onclick="test4()">변수 타입 확인</button>
+			</dd>
+		<dt>데이터 타입의 종류</dt>
+			<dd>1. 문자(string)</dd>
+			<dd>2. 숫자(number)</dd>
+			<dd>3. 논리값(boolean)</dd>
+			<dd>4. null</dd>
+			<dd>5. 객체(object)</dd>
+			<dd>6. 함수(function)</dd>
+	</dl>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

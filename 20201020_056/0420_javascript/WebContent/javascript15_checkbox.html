@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	#colorBox { width: 310px; height: 310px; position: relative; border: 2px solid orange; padding: 5px; }
+	#yellow, #green, #blue, #black {
+		width: 150px; height: 150px; border: 1px solid gray; position: absolute;
+	}
+	#green { left: 160px; }
+	#blue { top: 160px; }
+	#black { left: 160px; top: 160px; }
+
+</style>
+
+<script type="text/javascript">
+
+	function allSelect(bool) {
+//		alert(bool);
+		var chks = document.getElementsByName("chk");
+//		alert(chks.length);
+		for(var i = 0; i < chks.length; i++) {
+			chks[i].checked = bool;
+		}
+	}
+
+	function sel() {
+		var chks = document.getElementsByName("chk");
+		for (var i = 0; i < chks.length; i++) {
+			if(chks[i].checked) {
+				document.getElementById(chks[i].value).style.backgroundColor = chks[i].value;
+			} else {
+				document.getElementById(chks[i].value).style.backgroundColor = "white";
+			}
+		}
+	}
+
+	function clearDiv() {
+		var colorBox = document.querySelectorAll("#colorBox > div")
+//		alert(colorBox.length);
+		for (var i = 0; i < colorBox.length; i++) {
+			colorBox[i].style.backgroundColor = "white";
+		}
+		document.getElementsByName("all")[0].checked = false;
+		allSelect(false);
+	}
+	
+</script>
+
+</head>
+<body>
+
+	<div id="colorBox">
+		<div id="yellow">노랑</div>
+		<div id="green">녹색</div>
+		<div id="blue">파랑</div>
+		<div id="black">검정</div>
+	</div><br/>
+
+	<form>
+
+		<input type="checkbox" name="all" onclick="allSelect(this.checked)"/>전체선택<br/><br/>
+		<input type="checkbox" name="chk" value="yellow"/>노랑<br/>
+		<input type="checkbox" name="chk" value="green"/>녹색<br/>
+		<input type="checkbox" name="chk" value="blue"/>파랑<br/>
+		<input type="checkbox" name="chk" value="black"/>검정<br/><br/>
+	
+		<input type="button" value="선택" onclick="sel()"/>
+		<input type="button" value="클리어" onclick="clearDiv()"/><br/>
+	
+	</form>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

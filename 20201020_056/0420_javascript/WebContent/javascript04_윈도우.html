@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	#register {
+		border: 2px solid blue;
+		background-color: orange;
+		top: 200px;
+		left: 500px;
+		position: absolute; /* absolute로 지정되야 top, left 속성이 제대로 적용된다. */
+		display: none; /* id가 register인 요소를 화면에 표시하지 않는다. */
+	}
+
+</style>
+
+<script type="text/javascript">
+
+//	window.open 옵션
+//	width : 팝업창 가로길이
+//	height : 팝업창 세로길이
+//	toolbar=no : 단축도구창(툴바) 표시안함
+//	menubar=no : 메뉴창(메뉴바) 표시안함
+//	location=no : 주소창 표시안함
+//	scrollbars=no : 스크롤바 표시안함
+//	status=no : 아래 상태바창 표시안함
+//	resizable=no : 창변형 하지않음
+//	fullscreen=no : 전체화면 하지않음
+//	channelmode=yes : F11키 기능이랑 같음
+//	left=0 : 왼쪽에 창을 고정(ex. left=30 이런식으로 조절)
+//	top=0 : 위쪽에 창을 고정(ex. top=100 이런식으로 조절)
+
+	function openWin() {
+//		window.open(url, title, option)
+		var url = "./javascript04_윈도우2.html"; // 새로 띄울 창에 표시할 페이지
+		var title = "자식 윈도우"; // 윈도우 이름
+		var option = "top=200, left=600, width=500px, height=500px, scrollbar=no, resizable=no";
+//		window.open();
+//		window.open(url);
+		window.open(url, title, option);
+	}
+
+	function registerForm() {
+//		감춰놓은 id가 register인 div를 보이게 한다.
+		document.getElementById("register").style.display = "block";
+//		윈도우의 배경색을 변경한다.
+		document.body.style.background = "gray";
+//		회원가입 버튼을 비활성화 시킨다.
+		var btns = document.getElementsByName("btn1");
+//		name 속성이 btn1인 버튼 객체의 개수만큼 반복하며 비활성화 시킨다.
+		for(var i in btns) {
+			btns[i].disabled = "disabled";
+		}
+	}
+	
+	function closeWin() {
+		document.getElementById("register").style.display = "none";
+		document.body.style.background = "white";
+		var btns = document.getElementsByName("btn1");
+		for(var i in btns) {
+			btns[i].disabled = "";
+		}
+	}
+	
+	function idChk() {
+		alert("아이디 중복체크를 하세요");
+	}
+	
+	function idCheck() {
+		var url = "./javascript04_윈도우3.html";
+		var title = "아이디 중복 검사";
+		var option = "top=200, left=600, width=500px, height=500px, scrollbar=no, resizable=no";
+		window.open(url, title, option);
+	}
+
+</script>
+
+</head>
+<body>
+
+	<div>
+		<input id="parentId" type="text" name="name">
+		<h1>팝업창 만들기 - 새창</h1>
+		<input type="button" name="btn" value="창열기" onclick="openWin()"/>
+		<input type="text" name="name1">
+		<input id="name" type="text" name="name22">
+		<h1>명훈이는 천재인가요?</h1>
+		
+		<hr/>
+		
+		<h1>회원가입 - 현재창</h1>
+		<input type="button" value="회원가입" name="btn1" onclick="registerForm()"/>
+	</div>
+
+	<!-- 회원 가입 폼 -->
+	<div id="register">
+	<form>
+		<table>
+			<caption>회원가입</caption>
+			<tr>
+				<td>아이디</td>
+				<td>
+					<input type="text" name="id" readonly="readonly" onclick="idChk()"/>
+					<input type="button" value="중복체크" onclick="idCheck()"/>
+				</td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td>
+					<input type="password" name="password"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="button" value="확인" onclick="closeWin()"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+	</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

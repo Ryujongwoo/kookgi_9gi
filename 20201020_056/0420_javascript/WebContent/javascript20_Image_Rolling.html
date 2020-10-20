@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	a { font-size: 30pt; text-decoration: none; color: black; }
+	img { vertical-align: middle; width: 300px; height: 300px; }
+
+</style>
+
+<script type="text/javascript">
+
+	window.onload = function() {
+		var img = document.querySelector("img");
+		var archs = document.querySelectorAll("a");
+		var count = 5;
+		
+//		◀ 누름
+		archs[0].onclick = function() {
+//			alert("◀ 누름");
+//			getAttribute("속성이름") : 인수로 속성에 지정된 값을 얻어온다.
+			var imgAlt = img.getAttribute("alt");
+//			alert(imgAlt);
+			if(imgAlt == "img01") {
+				alert("첫번째 이미지 입니다.");
+			} else {
+				img.setAttribute("alt", "img0" + --count);
+				img.setAttribute("src", "./images/img0" + count + ".jpg");
+			}
+		}
+
+//		▶ 누름
+		archs[1].onclick = function() {
+//			alert("▶ 누름");
+			var imgAlt = img.getAttribute("alt");
+//			alert(imgAlt);
+			if(imgAlt == "img05") {
+				alert("마지막 이미지 입니다.");
+			} else {
+				img.setAttribute("alt", "img0" + ++count);
+				img.setAttribute("src", "./images/img0" + count + ".jpg");
+			}
+		}
+	}
+
+</script>
+
+</head>
+<body>
+
+	<a href="#" id="lt">◀</a>
+	<img alt="img05" src="./images/img05.jpg">
+	<a href="#" id="gt">▶</a>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

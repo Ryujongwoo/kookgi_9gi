@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+//	onload 이벤트에 익명 함수를 할당한다.
+//	현재 페이지의 모든 내용이 브라우저에 load 되고난 후 할당된 익명 함수가 실행된다.
+	onload = function() {
+		document.getElementsByTagName("button")[0].onclick = testDate1;
+		document.getElementsByTagName("button")[1].onclick = testDate2;
+		document.getElementsByTagName("button")[2].onclick = testDate3;
+		document.getElementsByTagName("button")[3].onclick = testDate4;
+		document.getElementsByTagName("button")[4].onclick = testDate5;
+//		setInterval(실행할 함수, 대기시간) : 지정된 시간이 경과될 때 마다 인수로 지정된 함수를 반복 실행한다.
+//		clearInterval(중지할 함수) : setInterval() 함수의 실행을 중지시킨다.
+//		setTimeout(실행할 함수, 대기시간) : 지정된 시간이 경과되면 인수로 지정된 함수를 1번 실행한다.
+//		clearTimeout(중지할 함수) : setTimeout() 함수의 실행을 중지시킨다.
+		setInterval(testDate1, 1000);
+	}
+	
+	function testDate1() {
+//		alert("testDate1() 함수 실행");
+		var inputDate = document.getElementById("today");
+//		오늘 날짜를 얻어온다.
+		var date = new Date();
+//		inputDate.innerHTML = date;							// Wed Apr 22 2020 09:28:48 GMT+0900 (대한민국 표준시)
+//		inputDate.innerHTML = date.toDateString();			// Wed Apr 22 2020
+//		inputDate.innerHTML = date.toLocaleDateString();	// 2020. 4. 22.
+//		inputDate.innerHTML = date.toLocaleString();		// 2020. 4. 22. 오전 9:31:56
+		inputDate.innerHTML = date.toLocaleTimeString();	// 오전 9:32:23
+	}
+
+	function testDate2() {
+//		alert("testDate2() 함수 실행");
+		var inputDate = document.getElementById("today");
+		var date = new Date();
+//		var year = date.getYear() + 1900;	// 년, 1900을 더해야 한다.
+		var year = date.getFullYear();		// 년
+		var month = date.getMonth() + 1;	// 월
+		var day = date.getDate();			// 일
+		var week = date.getDay();			// 요일, 일요일(0), 월요일(1), ..., 금요일(5), 토요일(6)
+		var weekDay = ["일", "월", "화", "수", "목", "금", "토"];
+//		alert(weekDay[week] + "요일");
+		inputDate.innerHTML = year + "." + month + "." + day + "(" + weekDay[week] + ")";
+	}
+	
+	function testDate3() {
+//		alert("testDate3() 함수 실행");
+		var obj = document.getElementById("dateInput").value;
+		alert(obj);
+//		Date 객체를 만들때 인수로 년, 월, 일을 넣어주면 특정 날짜 객체를 만들수 있다.
+		var year = 2020;
+		var month = 6;
+		var day = 30;
+//		var date = new Date(year, month - 1, day);
+//		Date 객체를 만들때 인수 문자열로 구성된 날짜를 넣어줘도 날짜 객체가 생성된다.
+		var date = new Date("2020-06-30");
+		document.getElementById("specific").innerHTML = date;
+	}
+	
+	function testDate4() {
+//		alert("testDate4() 함수 실행");
+		var dates = document.getElementById("dates").value;
+		var inputDate = document.getElementById("inputDate").value;
+//		날짜 연산을 하기 위해서 id가 dates인 객체의 데이터를 날짜 데이터로 만든다.
+		var date = new Date(dates);
+		date.setDate(date.getDate() + Number(inputDate));
+//		alert(dates + "부터 " + inputDate + "일 만큼 경과된 날짜는 " + date.toLocaleDateString());
+		document.getElementById("result").value = date.toLocaleDateString();
+	}
+	
+	function testDate5() {
+//		alert("testDate5() 함수 실행");
+		var dates2 = document.getElementById("dates2").value;
+		var inputDate2 = document.getElementById("inputDate2").value;
+		var startDate = new Date(inputDate2);
+		var endDate = new Date(dates2);
+		var result = (endDate - startDate) / (60 * 60 * 24 * 1000);
+//		alert(result);
+		document.getElementById("result2").value = result;
+	}
+</script>
+
+</head>
+<body>
+
+	<h2>오늘 날짜</h2>
+	<span id="today"></span><br/>
+	<button>오늘 날짜 보기</button>
+	<button>날짜 표시 방법 변경</button>
+	<hr/>
+	
+	<h2>특정 날짜</h2>
+	<span id="specific"></span><br/>
+	<input type="date" id="dateInput"/>
+	<button>특정 날짜 보기</button>
+	<hr/>
+
+	<h2>경과 날짜</h2>
+	지정 날짜 <input type="date" id="dates" value="2019-12-17"/><br/>
+	경과일 <input type="number" id="inputDate"/><br/>
+	지정 날짜에서 경과일이 지난 날짜 <input type="text" id="result" readonly="readonly"/><br/>
+	<button>경과 날짜 보기</button>
+	<hr/>
+	
+	<h2>D-day</h2>
+	수료 날짜 <input type="date" id="dates2" value="2020-06-30"/><br/>
+	지정 날짜 <input type="date" id="inputDate2"/><br/>
+	수료일까지 남은 날짜 <input type="text" id="result2" readonly="readonly"/><br/>
+	<button>수료일까지 남은 날짜 보기</button>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

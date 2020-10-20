@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	#circle { border: 1px solid white; display: none; }
+
+</style>
+
+<script type="text/javascript">
+
+	function randomNumber() {
+//		random() : 0 이상이고 1 미만인 무작위수를 발생시킨다.
+//		floor() : 내림, ceil() : 올림, round() : 반올림
+		var ran = Math.floor(Math.random() * 6) + 1;
+		document.getElementById("random").value = ran;
+	}
+
+	function randomBgColor() {
+		var ran = function() {
+			return Math.floor(Math.random() * 256);
+		};
+		document.body.style.backgroundColor = "rgb(" + ran() + ", " + ran() + ", " + ran() + ")";
+	}
+	
+	function circleView() {
+		var ran = Math.floor(Math.random() * 200) + 101;
+		var circle = document.getElementById("circle");
+		circle.style.width = ran + "px";
+		circle.style.height = ran + "px";
+		circle.style.borderRadius = Math.floor(ran / 2) + "px";
+		var r = function() {
+			return Math.floor(Math.random() * 256);
+		};
+		circle.style.backgroundColor = "rgb(" + r() + ", " + r() + ", " + r() + ")";
+		circle.style.display = "block";
+	}
+	
+	function circleArea() {
+		var circleWidth = document.getElementById("circle").style.width;
+//		alert(circleWidth);
+//		alert(typeof circleWidth);
+		var width = circleWidth.substring(0, circleWidth.length - 2); // 원의 지름
+//		alert(width);
+		var radius = Math.round(width / 2); // 원의 반지름
+//		alert(radius);
+		var area = Math.PI * (Math.pow(radius, 2)); // 원의 너비
+		var len = Math.PI * radius * 2; // 원의 둘레
+		document.getElementById("area").innerHTML = Math.round(area);
+		document.getElementById("len").innerHTML = Math.round(len);
+	}
+	
+</script>
+</head>
+<body>
+
+	<h2>랜덤 숫자 생성하기</h2>
+	숫자 : <input type="text" id="random"/>
+	<input type="button" value="랜덤 숫자 만들기" onclick="randomNumber()">
+
+	<h2>랜덤 배경색 설정하기</h2>
+	<input type="button" value="배경색 변경" onclick="randomBgColor()">
+
+	<h2>랜덤한 크기의 원 만들기</h2>
+	<input type="button" value="원 만들기" onclick="circleView()"><br/>
+	<div id="circle"></div> <!-- 여기에 css를 circleView() 함수에서 지정해 원을 표시한다. -->
+
+	<h2>위에서 만든 랜덤한 크기의 원의 넓이와 둘레 계산하기</h2>
+	<input type="button" value="원의 넓이와 둘레" onclick="circleArea()"><br/>
+	원의 넓이 : <span id="area"></span><br/>
+	원의 둘레 : <span id="len"></span><br/>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
