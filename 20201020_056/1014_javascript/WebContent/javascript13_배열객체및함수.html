@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function singleArr() {
+//		alert('singleArr()');
+//		배열 선언 방법
+		var arrayObj = new Array();						// 크기가 0인 빈 배열 객체를 선언한다.
+		console.log(arrayObj);
+		var arrayObj2 = new Array(5);					// 크기가 5인 빈 배열 객체를 선언한다.
+		console.log(arrayObj2);
+		var arrayObj3 = new Array(1, 2, 3, 4, 5);		// 크기가 5인 배열 객체를 선언하고 인수로 지정된 데이터로 초기화 시킨다.
+		console.log(arrayObj3);
+		var arrayObj4 = ['value1', 'value2', 3, 4];		// []에 지정된 초기치의 크기 만큼 배열 객체를 선언하고 초기치로 초기화 시킨다.
+		console.log(arrayObj4);
+	}
+
+	function multiArr() {
+//		alert('multiArr()');
+		var arrRow = 4;		// 행의 개수
+		var arrCol = 3;		// 열의 개수
+//		행을 먼저 만들고 행의 개수 만큼 반복하며 열을 만든다.
+		var arr = new Array(arrRow);		// 행을 만든다.
+		for (var i = 0; i < arr.length; i++) {
+			arr[i] = new Array(arrCol);		// 열을 만든다.
+		}
+		
+		arr[0][0] = 'apple';
+		arr[0][1] = 'banana';
+		arr[0][2] = 'melon';
+		
+		arr[1][0] = 100;
+		arr[1][1] = 200;
+		arr[1][2] = 300;
+		
+		arr[2][0] = true;
+		arr[2][1] = 999;
+		arr[2][2] = '홍길동';
+		
+//		배열에 배열을 저장 시킬 수 있다.
+		arr[3][0] = ['홍길동', '바보'];
+		arr[3][1] = ['임꺽정', '천재'];
+		arr[3][2] = ['코로나는', '무섭다.'];
+		
+		console.log(arr);
+	}
+	
+	function joinTest() {
+//		alert('joinTest()');
+		var fruit = ['apple', 'banana', 'melon', 'mango'];
+		var arr = ['111', '222', '333', '444'];
+//		배열끼리 덧셈 연산을 실행하면 배열을 합쳐서 문자열로 만들어 준다.
+		var add = fruit + arr;
+		console.log(typeof add);
+		console.log(add);
+//		join() 함수는 배열 요소를 인수로 지정한 문자열을 삽입해서 문자열로 만들어준다.
+		var result = fruit.join('|');
+		console.log(typeof result);
+		console.log(result);
+	}
+	
+	function sortTest1() {
+//		alert('sortTest1()');
+		var arr = ['a', 'c', 'b', null, 5, 100];	// 문자열화 된 숫자 => 문자 => null
+//		sort() : 사전식 정렬, 오름차순 정렬, 무조건 문자 데이터로 취급해서 코드값 순서대로 정렬된다.
+		arr.sort();
+		console.log(arr);
+	}
+	
+	function sortTest2() {
+//		alert('sortTest2()');
+		var arr = [1, 4, 3, 8, 9, 7, 10];
+//		arr.sort();					// 무조건 문자열로 취급해서 정렬한다.
+		arr.sort(compareNum);		// 인수로 지정된 함수를 호출해서 함수에서 지정된 방식으로 정렬한다.
+		console.log(arr);
+	}
+//	숫자의 크기를 비교하는 기능을 실행하는 함수를 만든다. => 정렬 방식을 지정한다.
+	function compareNum(a, b) {
+//		return a - b;		// 오름차순 정렬
+		return b - a;		// 내림차순 정렬
+	}
+	
+	function reverseTest() {
+//		alert('reverseTest()');
+		var arr = [1, 4, 3, 8, 9, 7, 10];
+		arr.reverse();
+		console.log(arr);
+//		오름차순으로 정렬한 후 reverse() 실행하면 배열 순서가 뒤집히면서 내림차순으로 정렬한 효과가 난다.
+	}
+	
+	function pushShiftPop() {
+//		alert('pushShiftPop()');
+		var arr = new Array();
+		console.log(arr);
+//		push() : 배열의 맨 마지막에 데이터를 추가한다.
+		arr.push('first');
+		console.log(arr);
+		arr.push('second');
+		console.log(arr);
+		arr.push('third');
+		console.log(arr);
+		arr.push(5);
+		console.log(arr);
+		arr.push(100);
+		console.log(arr);
+//		shift() : 배열의 맨 앞에서 데이터를 꺼내온다. => 배열에 저장되어있던 기존 데이터는 제거된다.
+		var a = arr.shift();
+		console.log(a + ' => ' + arr);
+//		pop() : 배열의 맨 뒤에서 데이터를 꺼내온다. => 배열에 저장되어있던 기존 데이터는 제거된다.
+		var b = arr.pop();
+		console.log(b + ' => ' + arr);
+	}
+	
+	function sliceTest() {
+//		alert('sliceTest()');
+		var arr = new Array(1, 2, 3, 4, 5);
+//		slice(a, b) : 배열의 a번째 index 부터 b-1번째 index 까지 추출해서 새 배열을 만든다.
+		var arr1 = arr.slice(1, 3);
+		console.log(arr1);
+		arr1[0] = 100;
+		console.log(arr1);
+		
+		var arr2 = new Array(new Array(1, 2), new Array(3, 4), new Array(5, 6), new Array(7, 8))
+		console.log(arr2);
+		var arr3 = arr2.slice(1, 3);
+		console.log(arr3);
+	}
+	
+</script>
+
+</head>
+<body>
+
+<h2>배열 객체</h2>
+<ul>
+	<li onclick="singleArr()">1차원 배열</li>
+	<li onclick="multiArr()">2차원 배열</li>
+	<li onclick="joinTest()">join() 함수</li>
+	<li>배열 정렬
+		<ul>
+			<li onclick="sortTest1()">문자 정렬 - sort()</li>
+			<li onclick="sortTest2()">숫자 정렬 - sort()</li>
+			<li onclick="reverseTest()">배열 순서 뒤집기 - reverse()</li>
+		</ul>
+	</li>
+	<li onclick="pushShiftPop()">배열의 데이터 입출력
+		<ul>
+			<li>push()</li>
+			<li>shift()</li>
+			<li>pop()</li>
+		</ul>	
+	</li>
+	<li onclick="sliceTest()">배열의 일부분으로 새 배열을 만든다.</li>
+</ul>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

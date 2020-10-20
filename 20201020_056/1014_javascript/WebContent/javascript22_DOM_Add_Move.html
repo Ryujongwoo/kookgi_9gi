@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function addAppend() {
+//		alert('addAppend()');
+		var fieldSet = document.getElementById('addEle');
+		var p = document.createElement('p');
+		var txt = document.createTextNode('fieldSet 내부의 div 태그 뒤에 추가된다.');
+		p.appendChild(txt);
+		fieldSet.appendChild(p);
+	}
+
+	function addBefore() {
+//		alert('addBefore()');
+		var fieldSet = document.getElementById('addEle');
+		var p = document.createElement('p');
+		var div = document.querySelector('#addEle > div');
+//		textContent : 특정 태그에 문자열을 넣어준다.
+		p.textContent = 'fieldSet 내부의 div 태그 앞에 추가된다.';
+//		insertBefore(a, b) : b 태그 앞에 a 태그를 삽입한다.
+		fieldSet.insertBefore(p, div);
+	}
+
+	function moveElement() {
+//		alert('moveElement()');
+//		children[index] : 선택된 element의 index 번째 요소에 해당되는 element를 얻어온다.
+//		특정 element 다른 위치에 넣어주면 기존의 위치에서 제거된다. => 이동된다.
+		var moveEle = document.querySelector('fieldset').children[1];
+		console.log(moveEle);
+		var addEle = document.body;
+		addEle.appendChild(moveEle);
+	}
+
+</script>
+
+</head>
+<body>
+
+<h2>태그 추가, 삽입, 이동하기</h2>
+<input type="button" value="fieldset 내부의 div 태그 뒤에 추가" onclick="addAppend()"/>
+<input type="button" value="fieldset 내부의 div 태그 앞에 삽입" onclick="addBefore()"/>
+<input type="button" value="element 이동" onclick="moveElement()"/>
+
+<fieldset id="addEle">
+	<legend>부모 태그</legend>
+	<div>div 태그</div>
+</fieldset>
+
+</body>
+</html>

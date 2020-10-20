@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function tableAdd() {
+//		alert('tableAdd()');
+//		데이터가 입력된 form을 얻어와서 form에 저장된 데이터를 배열에 저장한다.
+//		forms[index] : 현재 문서의 form을 배열 형태로 저장하고 있는 내장 객체
+		var doc = document.forms[0];
+//		console.log(doc.id.value);
+		var vals = [doc.id.value, doc.password.value, doc.address.value, doc.phone.value];
+//		console.log(vals);
+		
+//		form에 데이터가 모두 입력되지 않았나 검사한다.
+		for (var i = 0; i < vals.length; i++) {
+			if (vals[i] == null || vals[i] == '' || vals[i] == undefined) {
+				alert('테이블에 데이터를 모두 입력하세요');
+				return;
+			}
+		}
+		
+//		form에 입력한 데이터를 id가 ctb인 테이블에 추가한다.
+//		form에 입력된 데이터를 사용해서 <tr> 태그를 만들어 추가한다. => 10개 까지만 추가 가능하게 한다. => <thead> 태그 내부에 <tr> 태그를
+//		10개 까지만 넣을 수 있다.
+//		<tbody> 태그를 얻어온다.
+		var tbody = document.getElementById('addtr');
+//		console.log(tbody);
+//		<tbody> 태그의 자식(<tr> 태그)의 개수를 children 속성을 통해서 얻어온다.
+		var trLen = tbody.children.length;
+//		console.log(trLen);
+
+//		지정한 행의 개수를 넘지 않는 범위내에서 테이블에 데이터를 createRow() 함수로 만들어 추가한다.
+		trLen > 10 ? alert('10개 까지만 추가할 수 있습니다.') : document.getElementById('addtr').appendChild(createRow(vals));
+	}
+
+//	tableAdd() 함수의 배열 vals을 인수로 넘겨받아 테이블에 추가하는 함수 => [id, password, address, phone]
+	function createRow(vals) {
+//		console.log(vals);
+//		행(tr)을 만든다.
+		var tr = document.createElement('tr');
+//		행을 구성하는 열의 개수(인수로 넘어온 배열의 크기) 만큼 반복하며 열을 만든다.
+		for (var i = 0; i < vals.length; i++) {
+//			열(td)을 만든다.
+			var td = document.createElement('td');
+//			열에 데이터를 넣어준다.
+			td.textContent = vals[i];
+//			행에 열을 추가한다.
+			tr.appendChild(td);
+		}
+		
+//		삭제 버튼을 추가하기 위해 열을 만든다.
+		var delTd = document.createElement('td');
+//		삭제 버튼을 만든다.
+		delTd.innerHTML = '<input type="button" value="삭제" onclick="delRow(this)"/>';
+//		삭제 버튼을 행에 추가한다.
+		tr.appendChild(delTd);
+		
+//		<tbody> 태그에 추가할 행을 리턴시킨다.
+		return tr;
+	}
+	
+//	테이블의 마지막 데이터 부터 1행씩 삭제하는 함수
+	function tableDel() {
+//		alert('tableDel()');
+		var tbody = document.getElementById('addtr');
+		tbody.removeChild(tbody.lastChild);
+	}
+	
+//	테이블의 모든 행을 삭제하는 함수
+	function tableDelAll() {
+//		alert('tableDelAll()');
+		var tbody = document.getElementById('addtr');
+		tbody.innerHTML = '';
+	}
+	
+	function delRow(obj) {
+//		alert('delRow()');
+		console.log(obj);
+		console.log(obj.parentNode);
+		console.log(obj.parentNode.parentNode);
+//		삭제할 <tr> 태그를 선택한다.
+		var delTr = obj.parentNode.parentNode;
+		
+		var tbody = document.getElementById('addtr');
+		tbody.removeChild(delTr);
+	}
+	
+</script>
+
+</head>
+<body>
+
+<form>
+	<table id="inTable">
+		<tr>
+			<td>아이디</td>
+			<td><input type="text" name="id"/></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="text" name="password"/></td>
+		</tr>
+		<tr>
+			<td>주소</td>
+			<td><input type="text" name="address"/></td>
+		</tr>
+		<tr>
+			<td>전화번호</td>
+			<td><input type="text" name="phone"/></td>
+		</tr>
+	</table>
+	<input type="button" value="추가" onclick="tableAdd()"/>
+</form><br/><br/>
+	
+<input type="button" value="1행씩 삭제" onclick="tableDel()"/>
+<input type="button" value="전체 삭제" onclick="tableDelAll()"/><br/><br/>
+
+<div id="addTable">
+	<table id="ctb" border="1">
+		<thead>
+			<tr>
+				<th>아이디</th>
+				<th>비밀번호</th>
+				<th>주소</th>
+				<th>전화번호</th>
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody id="addtr">
+		</tbody>
+	</table>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

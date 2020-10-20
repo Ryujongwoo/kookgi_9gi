@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function elementCreate() {
+//		alert('elementCreate()');
+//		element(태그) 추가
+//		createElement('태그이름') : 인수로 지정된 element를 만든다.
+		var div = document.createElement('div');				// <div></div>
+		
+//		element에 속성 추가
+		/*
+//		createAttribute('속성이름') : 특정 element에 넣어줄 인수로 지정된 속성을 만든다.
+		var attr = document.createAttribute('style');			// style=
+//		nodeValue : 속성에 속성 값을 추가한다.
+		attr.nodeValue = 'border: 2px solid blue';				// style='border: 2px solid blue'
+//		setAttributeNode(추가할 속성) : element에 속성을 추가한다.
+		div.setAttributeNode(attr);								// <div style='border: 2px solid blue'></div>
+		*/
+		
+//		setAttribute('속성이름', '속성값') : 속성을 추가한다.
+		div.setAttribute('style', 'border: 2px solid red');		// <div style='border: 2px solid red'></div>
+		
+//		element에 텍스트 추가
+//		createTextNode('문자열') : element에 넣어줄 텍스트를 만든다.
+		var txt = document.createTextNode('추가한 div 태그');
+//		appendChild('추가할 태그 또는 문자열') : 인수로 지정된 element를 태그에 추가한다.
+		div.appendChild(txt);									// <div style='border: 2px solid red'>추가한 div 태그</div>
+
+		document.body.appendChild(div);
+	}
+
+</script>
+
+</head>
+<body>
+
+<input type="button" value="Element 만들기" onclick="elementCreate()"/>
+
+</body>
+</html>
+
+
+
+

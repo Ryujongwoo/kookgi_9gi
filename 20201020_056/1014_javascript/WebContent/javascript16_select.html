@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+	function foodShow() {
+//		alert('foodShow()');
+		var doc = document.getElementsByName('food')[0];
+//		doc는 select 태그 객체이므로 length는 select 태그의 항목(option 태그의 개수) 개수를 얻어온다.
+		console.log(doc.length);
+//		options : select 태그 내부의 option 태그 객체를 모아놓은 객체
+		console.log(typeof doc.options);
+		console.log(doc.options);
+//		selectedIndex : 콤보 상자에서 선택된 항목의 index를 얻어온다. => index는 0부터 시작된다.
+		var idx = doc.selectedIndex;
+		console.log(idx);
+		var food = doc.options[idx].value;
+		console.log(food);
+	}
+
+	function foodShow2() {
+//		alert('foodShow2()');
+		var doc = document.getElementsByName('food')[1];
+		console.log(doc.length);
+		var str = '';
+		for (var i = 0; i < doc.length; i++) {
+			if (doc.options[i].selected) {
+				str += doc.options[i].value + ' ';
+			}
+		}
+		console.log(str);
+	}
+	
+</script>
+
+</head>
+<body>
+
+<h2>먹고싶은 음식은</h2>
+<form>
+
+	<!-- select 태그에서 어떤 option 요소가 선택되면(변경되면) 실행되는 이벤트는 onchange 이벤트 이다. -->
+	<select name='food' style="width: 150px;" onchange="foodShow()">
+		<option value="짜장면">짜장면</option>
+		<option value="짬뽕">짬뽕</option>
+		<option value="탕수육" selected="selected">탕수육</option>
+		<option value="양장피">양장피</option>
+		<option value="팔보채">팔보채</option>
+	</select>
+	<br/><br/><br/><br/>
+
+	<!-- select 태그에 multiple="multiple" 속성을 지정하면 리스트 박스가 표시된다. => size 옵션으로 목록의 개수를 지정할 수 있다. -->
+	<select name='food' style="width: 150px;" multiple="multiple" size="5">
+		<option value="짜장면">짜장면</option>
+		<option value="짬뽕">짬뽕</option>
+		<option value="탕수육" selected="selected">탕수육</option>
+		<option value="양장피">양장피</option>
+		<option value="팔보채" selected="selected">팔보채</option>
+	</select>
+	<input type="button" value="선택" onclick="foodShow2()">
+
+</form>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

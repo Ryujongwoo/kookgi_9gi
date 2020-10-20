@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	#colorBox {
+		width: 300px;
+		height: 300px;
+		border: 5px solid orange;
+		/* padding: 5px; */
+		position: relative;
+	}
+	#yellow, #green, #blue, #black {
+		width: 150px;
+		height: 150px;
+		border: 1px solid gray;
+		position: absolute;
+	}
+	#green {
+		left: 150px;
+	}
+	#blue {
+		top: 150px;
+	}
+	#black {
+		left: 150px;
+		top: 150px;
+	}
+
+</style>
+
+<script type="text/javascript">
+
+	function allSelect(bool) {
+//		alert('allSelect(bool)');
+		console.log(bool);
+		var chks = document.getElementsByName('chk');
+		console.log(chks.length);
+		for (var i = 0; i < chks.length; i++) {
+			chks[i].checked = bool;
+		}
+	}
+
+	function selectColor() {
+		var chks = document.getElementsByName('chk');
+		for (var i = 0; i < chks.length; i++) {
+			if (chks[i].checked) {
+//				console.log(chks[i].value + " 선택");
+				document.getElementById(chks[i].value).style.backgroundColor = chks[i].value;
+			} else {
+//				console.log(chks[i].value + " 해제");
+				document.getElementById(chks[i].value).style.backgroundColor = 'white';
+			}
+		}
+	}
+	
+	function clearColor() {
+//		alert('clearColor()');
+		var colorBox = document.querySelectorAll('#colorBox > div');
+		console.log(colorBox.length);
+		for (var i = 0; i < colorBox.length; i++) {
+			colorBox[i].style.backgroundColor = 'white';
+		}
+		document.getElementsByName('all')[0].checked = false;
+		allSelect(false);
+	}
+	
+</script>
+
+</head>
+<body>
+
+<div id="colorBox">
+	<div id="yellow">노랑</div>
+	<div id="green">녹색</div>
+	<div id="blue">파랑</div>
+	<div id="black">검정</div>
+</div><br/>
+
+<form>
+	<input type="checkbox" name="all" onclick="allSelect(this.checked)"/>전체선택<br/><br/>
+	<input type="checkbox" name="chk" value="yellow"/>노랑<br/>
+	<input type="checkbox" name="chk" value="green"/>녹색<br/>
+	<input type="checkbox" name="chk" value="blue"/>파랑<br/>
+	<input type="checkbox" name="chk" value="black"/>검정<br/><br/>
+	
+	<input type="button" value="선택" onclick="selectColor()"/>
+	<input type="button" value="클리어" onclick="clearColor()"/><br/>
+</form>
+
+</body>
+</html>
