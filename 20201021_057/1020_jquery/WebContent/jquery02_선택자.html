@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+//	$(document).ready(function() {
+//		$('div:eq(0)').css('border', '2px solid red').css('width', '300px');
+//	});
+	$(function() {
+		$('div:eq(0)').css({'border': '2px solid green', 'width': '300px'});
+	});
+	
+	function a1() {
+//		alert('a1()');
+		/*
+		var span = document.getElementsByTagName('span');
+		console.log(span.length);
+		for (var i = 0; i < span.length; i++) {
+			span[i].style.color = 'green';
+		}
+		*/
+//		jquery에서는 리스트 형태도 반복문 없이 알아서 처리한다.
+		$('span').css('color', 'red');
+	}
+
+	function a2() {
+//		alert('a2()');
+		$('#t1').css('color', 'blue');
+	}
+
+	function a3() {
+//		alert('a3()');
+		$('.t2').css('color', 'purple');
+	}
+
+	function a4() {
+//		alert('a4()');
+		$('li > span').css('color', 'orange');
+	}
+
+	function a5() {
+//		alert('a5()');
+		$('li span').css('color', 'lime');
+	}
+
+//	:nth-child(), :nth-last-child()
+//	형제 요소 중에서 특정 순서에 있는 요소를 선택하는 선택자
+//	:nth-child()는 앞에서 부터 세고 :nth-last-child()는 뒤에서 부터 센다.
+//	인수로 숫자가 아닌 연산식을 사용할 수 있고 odd(홀수), even(짝수)도 사용할 수 있다.
+	
+	function a6() {
+//		alert('a6()');
+//		$('li').css('background-color', 'tomato');	// background-color와 backgroundColor는 같은 의미로 사용된다.
+//		:eq(index)는 index가 0부터 시작하고 :nth-child(index)는 index가 1부터 시작된다.
+//		$('li:eq(1)').css('background-color', 'tomato');
+//		$('li:nth-child(1)').css('background-color', 'yellow');
+		$('li:nth-child(odd)').css('background-color', 'yellow');	// 홀수 번째 형제
+		$('li:nth-child(even)').css('background-color', 'tomato');	// 짝수 번째 형제
+		$('li:nth-child(3n)').css('color', 'blue');					// 3의 배수 번째 형제
+	}
+	
+//	:first-child : 부모 요소 안에있는 첫 번째 자식 요소만 선택한다.
+//	:last-child : 부모 요소 안에있는 마지막 자식 요소만 선택한다.
+	
+//	first-child 선택자
+	function a7() {
+//		alert('a7()');
+		$('li:first-child').css('backgroundColor', 'pink');
+	}
+	
+//	last-child 선택자
+	function a8() {
+//		alert('a8()');
+		$('li:last-child').css('background-color', 'cyan');
+	}
+	
+</script>
+
+</head>
+<body>
+
+<h2>셀렉터 표현식</h2>
+<div>
+	<ul>
+		<li><span>tag로 선택하기</span></li>
+		<li id="t1">id로 선택하기</li>
+		<li class="t2">class로 선택하기</li>
+		<li><span>자식 선택자로 선택하기</span></li>
+		<li><b><span>자손 선택자로 선택하기</span></b></li>
+		<li>nth-child 선택자로 선택하기</li>
+		<li id="t1">first-child로 선택하기</li>
+		<li class="t2">last-child로 선택하기</li>
+	</ul>
+</div>
+
+<br/>
+<div>
+	<button onclick="a1()">태그</button>
+	<button onclick="a2()">아이디</button>
+	<button onclick="a3()">클래스</button>
+	<button onclick="a4()">자식 선택자</button>
+	<button onclick="a5()">자손 선택자</button>
+	<button onclick="a6()">nth-child 선택자</button>
+	<button onclick="a7()">first-child 선택자</button>
+	<button onclick="a8()">last-child 선택자</button>
+</div>
+
+</body>
+</html>
+
+
+

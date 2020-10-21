@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		
+//		input 태그 중에서 type이 text인 요소를 선택해서 배경색 지정하기
+		/*
+//		var obj = document.getElementsByTagName('input');
+		var obj = document.querySelectorAll('input');
+		console.log(obj.length);
+		for (var i = 0; i < obj.length; i++) {
+			if (obj[i].getAttribute('type') == 'text') {
+				obj[i].style.backgroundColor = 'cyan';
+			}
+		}
+		*/
+		/*
+		var obj = document.querySelectorAll('input[type=text]');
+		console.log(obj.length);
+		for (var i = 0; i < obj.length; i++) {
+			obj[i].style.backgroundColor = 'hotpink';
+		}
+		*/
+//		$('input[type=text]').css('background-color', 'skyblue');
+		$('input:text').css('background-color', 'skyblue');
+		
+//		input 태그 중에서 type이 password인 요소를 선택해서 배경색 지정하기
+		$('input:password').css('background-color', 'hotpink');
+		
+//		select 태그의 name 속성이 email인 요소의 change 이벤트가 발생되면 선택된 목록의 value를 name 속성이 addr인 텍스트 상자에 넣어준다.
+		/*
+//		var email = document.querySelector('select[name=email]');
+		var email = document.querySelectorAll('select[name=email]')[0];
+//		email.onchange = function() {
+		email.onchange = () => {
+			console.log(email.options[email.selectedIndex].value);
+			var addr = document.querySelectorAll('input[name=addr]')[0];
+			addr.value = email.options[email.selectedIndex].value;
+		}
+		*/
+		
+//		$('select[name=email]:eq(0)').change(function () {
+		$('select[name=email]:eq(0)').change(() => {
+			var sel = $('select[name=email]:eq(0) option:selected').val();
+			console.log(sel);
+			$('input[name=addr]:eq(0)').val(sel);
+
+//			콤보 상자는 한 번에 한 개만 선택되기 때문에 $('select[name=email]:eq(0) option:selected')와 $(this)가 같은 의미로 사용된다.
+//			화살표 함수를 사용하면 this를 사용할 경우 정상적으로 동작되지 않는다.
+//			console.log($(this).val());
+//			$('input[name=addr]:eq(0)').val($(this).val());
+		});
+		
+//		체크 박스를 체크(클릭)하면 체크된 목록들을 alert으로 출력한다.
+		
+	});
+
+</script>
+
+</head>
+<body>
+
+<h2>회원가입</h2>
+<table>
+	<tr>
+		<td>아이디</td>
+		<td>
+			<input type="text"/>
+			<input type="button" value="중복체크"/>
+		</td>
+	</tr>
+	<tr>
+		<td>비밀번호</td>
+		<td><input type="password"/></td>
+	</tr>
+	<tr>
+		<td>이름</td>
+		<td><input type="text"/></td>
+	</tr>
+	<tr>
+		<td>이메일</td>
+		<td>
+			<input type="text"/>@<input type="text" name="addr">
+			<select name="email">
+				<option>========== 직접입력 ==========</option>
+				<option value="naver.com">naver.com</option>
+				<option value="gmail.com">gmail.com</option>
+				<option value="daum.net">daum.net</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>취미</td>
+		<td>
+			<input type="checkbox" name="hobbies" value="지각"/>지각
+			<input type="checkbox" name="hobbies" value="조퇴"/>조퇴
+			<input type="checkbox" name="hobbies" value="결석"/>결석
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
