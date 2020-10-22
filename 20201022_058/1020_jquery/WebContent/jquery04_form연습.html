@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+//	input 요소의 선택
+//	:button : type 속성이 'button'인 모든 요소를 선택한다.
+//	:checkbox : type 속성이 'checkbox'인 모든 요소를 선택한다.
+//	:file : type 속성이 'file'인 모든 요소를 선택한다.
+//	:image : type 속성이 'image'인 모든 요소를 선택한다.
+//	:password : type 속성이 'password'인 모든 요소를 선택한다.
+//	:radio : type 속성이 'radio'인 모든 요소를 선택한다.
+//	:reset : type 속성이 'reset'인 모든 요소를 선택한다.
+//	:submit : type 속성이 'submit'인 모든 요소를 선택한다.
+//	:text : type 속성이 'text'인 모든 요소를 선택한다.
+//	:checked : type 속성이 'checkbox' 또는 'radio'인 요소 중에서 체크된 모든 요소들를 선택한다.
+//	:selected : option 요소 중에서 선택된 모든 요소들를 선택한다.
+//	:focus : 현재 포커스를 가지고 있는 요소를 선택한다.
+//	:disabled : 비활성화 되어있는 모든 요소를 선택한다.
+//	:enabled : 활성화 되어있는 모든 요소를 선택한다.
+
+	function choice1() {
+//		alert('choice1()');
+		/*
+		var docs = document.getElementsByTagName('input');
+		console.log(docs.length);
+//		javascript에서는 value 속성을 사용해서 ~~~~~.value 형태로 값을 얻어오고 ~~~~~.value = '값' 형태로 값을 저장한다.
+		var doc = document.getElementsByTagName('input')[0];
+		console.log(doc.value);
+		document.getElementsByTagName('input')[1].value = doc.value;
+		*/
+		
+//		jquery에서는 val() 함수를 사용하며 ~~~~~.val() 형태로 값을 얻어오고 ~~~~~.val('값') 형태로 값을 지정한다.
+//		아래와 같이 사용하면 input 태그의 type 속성이 text인 요소가 여러개 있더라도 첫 번째 요소의 값만 얻어올 수 있다.
+//		var docs = $('input:text').val();
+//		console.log(docs.length);
+//		console.log(docs);
+		
+		var docs = $('input:text');
+		console.log(docs.length);
+		console.log(docs);
+//		console.log(docs.value); // undefined
+		console.log(docs[0].value);
+		console.log(docs[1].value);
+		
+		var text1 = $('input:text:eq(0)');
+		console.log(text1.val());
+		$('input:text:eq(1)').val(text1.val());
+	}
+	
+	function choice2() {
+//		alert('choice2()');
+//		var doc = document.getElementsByTagName('input')[3];
+//		console.log(doc.value);
+//		document.getElementById('a').innerHTML = doc.value;
+
+//		var doc = $('input:radio').val();
+		var doc = $('input:radio:eq(0)').val();
+		console.log(doc);
+//		javascript는 innerHTML을 사용해서 태그 내부에 텍스트를 넣어주지만 jquery는 text() 메소드로 넣어준다.
+		$('#a').text(doc);
+	}
+	
+	function choice3() {
+//		alert('choice3()');
+		var doc = $('input:checkbox:eq(0)').val();
+		console.log(doc);
+		$('#a').text(doc);
+	}
+
+	$(document).ready(function() {
+		/*
+		var selEle = document.getElementsByTagName('select')[0];
+		selEle.onchange = function() {
+//			selectedIndex : 콤보 상자에서 선택된 option 항목의 index를 얻어온다.
+			console.log(selEle.selectedIndex);
+//			options : 콤보 상자의 <option> 태그에 입력된 항목을 배열 형태로 기억하는 객체
+			console.log(selEle.options[selEle.selectedIndex].value);
+		}
+		*/
+		
+		$('select:eq(0)').change(function () {
+//			console.log('select 태그의 change 이벤트 실행');
+			console.log($('select:eq(0) > option:selected').val());
+		});
+		
+		$('input[name=gender]').click(() => {
+			console.log(
+				$('input[name=gender]:checked').val()
+			);
+		});
+		
+	});
+	
+</script>
+
+</head>
+<body>
+
+<form action="">
+	<input type="text"/>
+	<input type="text"/>
+	<input type="button" value="선택" onclick="choice1()"/>
+	<input type="radio" value="마법사" onclick="choice2()"/>
+	<input type="checkbox" value="JAVA프레임웍기반 풀스택 양성과정" onclick="choice3()"/>
+	<div id="a">
+		JAVA프레임웍기반 풀스택 양성과정
+	</div>
+	<select>
+		<option value="HTML">HTML</option>
+		<option value="JavaScript">JavaScript</option>
+		<option value="jQuery">jQuery</option>
+	</select>
+	<fieldset style="width: 200px">
+		<legend>성별</legend>
+		<input type="radio" name="gender" value="남자">남자
+		<input type="radio" name="gender" value="여자">여자
+	</fieldset>
+</form>
+
+</body>
+</html>

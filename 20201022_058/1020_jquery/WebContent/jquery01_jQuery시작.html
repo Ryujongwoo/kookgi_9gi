@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- <script type="text/javascript" src="./js/jquery-3.5.1.min.js"></script> -->
+
+<script type="text/javascript">
+
+	/*
+//	javascript onload
+	window.onload = function() {
+//		alert('꺄~~~~~~~~~~~~~~~');
+		document.getElementById('list').style.backgroundColor = 'yellow';
+	}
+	
+//	window는 생략할 수 있다.
+	onload = function() {
+		document.getElementById('list').style.color = 'blue';
+	}
+	*/
+	
+	/*
+//	jQuery onload
+	$(document).ready(function() {
+//		alert('꺄~~~~~~~~~~~~~~~');
+//		$('css 선택자').메소드();
+		$('#list').css('backgroundColor', 'yellow');
+		document.getElementById('list').style.color = 'blue';
+	});
+	
+	$(function() {
+		document.getElementById('list').style.backgroundColor = 'magenta';
+		$('#list').css('color', 'pink');
+	});
+	*/
+	
+//	이미지 크기 변경
+	function imgSize() {
+//		alert('imgSize()');
+//		DOM 탐색
+//		$('img').css('width', '200px');
+//		$('img').css('height', '400px');
+//		한 줄에 여려개의 스타일 속성을 지정할 수 있다.
+//		$('img').css('width', '400px').css('height', '200px');
+//		$('img').css({'width': '800px', 'height': '100px'});
+		$('img').css({'width': '200px', 'height': '400px'}).css('opacity', '0.5');
+	}
+	
+//	필터링 메소드
+//	.first() : 선택된 요소 중 첫 번째 요소를 선택한다.
+//	.last() : 선택된 요소 중 마지막 요소를 선택한다.
+//	.eq(index) : 선택된 요소 중 index 번째 요소를 선택한다.
+//	.slice() : 선택한 요소 중 전달받은 인덱스 범위에 해당하는 요소만 선택한다.
+//	.filter() : 선택된 요소 중 전달받은 선택자에 해당되거나, 함수 호출 결과가 참인 모든 요소를 선택한다.
+//	.not() : 선택된 요소 중 전달받은 선택자에 해당되거나, 함수 호출 결과가 거짓인 모든 요소를 선택한다.
+//	.has() : 선택된 요소 중 전달받은 선택자에 해당되는 요소의 모든 자손 요소를 선택한다.
+//	.is() : 선택된 요소 중 전달받은 선택자에 해당되는 요소가 하나라도 존재하면 true를 리턴한다.
+//	.map() : 선택한 요소 집합의 각 요소마다 콜백 함수를 실행하고 리턴값으로 구성된 객체를 리턴한다.	
+	
+//	리스트 선택
+	function highLight() {
+//		alert('highLight()');
+//		document.getElementById('list').style.backgroundColor = 'tomato';
+		$('#list').css('backgroundColor', 'tomato');
+		
+//		document.getElementsByTagName('li')[1].style.backgroundColor = 'yellow';
+//		$('#list > li').css('backgroundColor', 'yellow');
+//		$('#list > li').first().css('backgroundColor', 'yellow');
+//		$('#list > li').last().css('backgroundColor', 'yellow');
+//		$('#list > li').eq(1).css('backgroundColor', 'yellow');
+		$('#list > li').slice(2, 5).css('backgroundColor', 'yellow');
+	}
+	
+//	요소의 추가
+//	선택된 요소의 내부에 추가
+//		.append() : 선택된 요소의 마지막에 추가한다.
+//		.prepend() : 선택된 요소의 첫 번째에 추가한다.
+//	선택된 요소의 외부에 추가
+//		.before() : 선택된 요소의 앞에 추가한다.
+//		.after() : 선택된 요소의 뒤에 추가한다.
+	
+//	이미지 추가
+	function addImg() {
+//		alert('addImg()');
+//		$('img').after('<img alt="피카츄" src="./images/img02.jpg"/>')
+		$('img').last().after('<img alt="피카츄" src="./images/img02.jpg"/>')
+	}
+	
+//	요소의 표시와 숨김
+//	.hide() : 선택한 요소의 css를 자동으로 조정해서 사라지게 한다.
+//	.show() : 선택한 요소의 css를 자동으로 조정해서 표시되게 한다.
+//	.toggle() : 선택한 요소의 css를 자동으로 조정해서 hide()와 show() 메소드를 번갈아 적용한다.
+//	요소의 표시와 숨김 메소드의 인수로 시간(밀리초)을 설정하거나 slow, fast 예약어를 전달해서 속도를 설정할 수 있다.
+	
+//	페이드 효과
+//	.fadeIn() : 선택한 요소의 css 중 opacity 속성의 값을 높여가며 나타나게 한다.
+//	.fadeOut() : 선택한 요소의 css 중 opacity 속성의 값을 줄여가며 사라지게 한다.
+//	.fadeToggle() : fadeIn()과 fadeOut()를 번갈아 적용한다.
+//	요소의 표시와 숨김 메소드의 인수로 시간(밀리초)을 설정하거나 slow, fast 예약어를 전달해서 속도를 설정할 수 있다.
+	
+//	슬라이드 효과
+//	slideUp() : 선택한 요소의 css 중 height 속성의 값을 낮춰가며 사라지게 한다.
+//	slideDown() : 선택한 요소의 css 중 height 속성의 값을 높여가며 나타나게 한다.
+//	slideToggle() : slideUp()과 slideDown()을 번갈아 적용한다.
+//	요소의 표시와 숨김 메소드의 인수로 시간(밀리초)을 설정하거나 slow, fast 예약어를 전달해서 속도를 설정할 수 있다.
+	
+//	이미지 숨기기
+	function hideImg() {
+//		alert('hideImg()');
+//		document.getElementsByTagName('img')[0].style.display = 'none';
+//		$('img').hide();
+//		$('img').hide('slow');
+//		$('img').hide(1000);
+//		$('img').fadeOut(1000);
+		$('div').slideUp(1000);
+	}
+	
+//	이미지 보이기
+	function showImg() {
+//		alert('showImg()');
+//		document.getElementsByTagName('img')[0].style.display = 'block';
+//		$('img').show();
+//		$('img').show('slow');
+//		$('img').show(1000);
+//		$('img').fadeIn(1000);
+		$('div').slideDown(1000);
+	}
+	
+//	이미지 토글
+	function toggleImg() {
+//		alert('toggleImg()');
+//		$('img').toggle();
+//		$('img').toggle(1000);
+//		$('img').fadeToggle(1000);
+		$('div').slideToggle(1000);
+	}
+	
+</script>
+
+</head>
+<body>
+
+<h2>jQuery 시작</h2>
+<ul id="list">
+	<li>셀렉터 표현식</li>
+	<li>DOM 탐색 메소드</li>
+	<li>DOM 검색 메소드</li>
+	<li>이벤트 메소드</li>
+	<li>에펙트 메소드</li>
+	<li>AJAX 메소드</li>
+	<li>기타 등등</li>
+</ul>
+
+<button onclick="imgSize()">이미지 크기 변경</button>
+<button onclick="highLight()">리스트 선택</button>
+<button onclick="addImg()">이미지 추가</button>
+<button onclick="hideImg()">이미지 숨기기</button>
+<button onclick="showImg()">이미지 보이기</button>
+<button onclick="toggleImg()">이미지 토글</button>
+
+<br/><br/>
+<div>
+	<img alt="이브이" src="./images/img01.jpg"/>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
