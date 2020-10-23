@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	a {
+		text-decoration: none;
+		font-weight: bold;
+		color: #000000;
+	}
+	div {
+		width: 100px;
+		height: 100px;
+		position: relative;
+		background-color: hotpink;
+	}
+
+</style>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		$('.run').click(function() {
+//			alert('click');
+			$('#box').animate({'opacity': '0.1', 'left': '400px'}, 1000, 'linear')
+			         .animate({'opacity': '0.4', 'top': '160px', 'width': '20px', 'height': '20px'}, 'slow', 'linear')
+			         .animate({'opacity': '1.0', 'left': '0px', 'width': '100px', 'height': '100px'}, 'fast', 'linear')
+			         .animate({'top': '0px', 'width': '400px', 'height': '400px'}, 'fast', 'linear')
+			         .slideUp();
+		})
+	});
+
+</script>
+
+</head>
+<body>
+
+<p>
+	<a href="#" class="run">Run</a>
+</p>
+
+<div id="box"></div>
+
+</body>
+</html>
+
+
+

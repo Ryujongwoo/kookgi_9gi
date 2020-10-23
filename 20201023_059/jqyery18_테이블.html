@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		
+		$('#btn1').click(function() {
+			var html = '<tr><td>방법1</td><td>방법2</td><td>방법3</td><td>방법4</td></tr>';
+			$('tbody').append(html);
+		});
+		
+		$('#btn2').click(function() {
+			var $tr = $('<tr>', {});
+			var $td1 = $('<td>', {text: '방법2'});
+			var $td2 = $('<td>', {text: '방법2'});
+			var $td3 = $('<td>', {text: '방법2'});
+			var $td4 = $('<td>', {text: '방법2'});
+			$tr.append($td1);
+			$tr.append($td2);
+			$tr.append($td3);
+			$tr.append($td4);
+			$('tbody').append($tr);
+		});
+		
+	});
+
+</script>
+
+</head>
+<body>
+
+<table border="1">
+	<!-- colgroup 태그로 열 설정을 미리 할 수 있다. -->
+	<colgroup>
+		<col width="200"/><col width="200"/><col width="200"/><col width="200"/>
+	</colgroup>
+	<thead>
+		<tr>
+			<th>1</th><th>2</th><th>3</th><th>4</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1</td><td>2</td><td>3</td><td>4</td>
+		</tr>
+		<tr>
+			<td>5</td><td>6</td><td>7</td><td>8</td>
+		</tr>
+	</tbody>
+</table><br/>
+
+<button type="button" id="btn1">방법1</button>
+<button type="button" id="btn2">방법2</button>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

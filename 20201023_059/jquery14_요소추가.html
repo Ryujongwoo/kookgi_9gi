@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	div {
+		border: 1px solid blue;
+	}
+	.prepend {
+		border: 1px solid red;
+	}
+	.append {
+		border: 1px solid green;
+	}
+
+</style>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		$('button:eq(0)').click(function() {
+//			alert('click');
+//			$('<태그>') : 인수로 지정된 태그를 만든다.
+//			$('div').prepend($('<p>')).addClass('prepend').text('prepend');
+			$('div').prepend($('<p>').addClass('prepend').text('prepend'));
+		});
+		$('button').eq(1).click(function() {
+//			alert('click');
+			$('div').append($('div > p:first').addClass('append'));
+		});
+		$('button:eq(2)').click(function() {
+			$('div').html('<b>html 요소를 변경한다.</b>');
+		});
+		$('button:eq(3)').click(function() {
+			$('div').text('<b>html 요소를 변경한다.</b>');
+		});
+	});
+
+</script>
+
+</head>
+<body>
+
+<button>prepend</button>
+<button>append</button>
+<button>html</button>
+<button>text</button>
+
+<div>
+	<p>내부 삽입</p>
+</div>
+
+</body>
+</html>

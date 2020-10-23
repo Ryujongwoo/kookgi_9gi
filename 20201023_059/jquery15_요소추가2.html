@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	div {
+		border: 1px solid red;
+	}
+
+</style>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		$('button:eq(0)').click(function() {
+//			타겟 요소가 after() 메소드는 앞에 위치하고 after() 메소드의 인수로 추가할 요소를 지정한다.
+			$('#base').after('<div>after() 메소드로 추가한 요소</div>');
+		});
+		$('button:eq(1)').click(function() {
+//			타겟 요소가 insertAfter() 메소드의 인수로 존재하고 추가할 요소가 insertAfter() 메소드 앞에 위치한다.			
+			$('<div>insertAfter() 메소드로 추가한 요소</div>').insertAfter('#base');
+		});
+		$('button:eq(2)').click(function() {
+//			타겟 요소가 before() 메소드는 앞에 위치하고 before() 메소드의 인수로 추가할 요소를 지정한다.
+			$('#base').before('<div>before() 메소드로 추가한 요소</div>');
+		});
+		$('button:eq(3)').click(function() {
+//			타겟 요소가 beforeAfter() 메소드의 인수로 존재하고 추가할 요소가 beforeAfter() 메소드 앞에 위치한다.			
+			$('<div>beforeAfter() 메소드로 추가한 요소</div>').insertBefore('#base');
+		});
+	});
+
+</script>
+
+</head>
+<body>
+
+<button>after</button>
+<button>insertAfter</button>
+<button>before</button>
+<button>beforeAfter</button>
+
+<div id="base">
+	<p>외부 삽입</p>
+</div>
+
+</body>
+</html>

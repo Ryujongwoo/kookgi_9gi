@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	p {
+		width: 130px;
+		border: 2px solid skyblue;
+		position: absolute;
+		left: 10px;
+		display: none;
+	}
+	img {
+		width: 200px;
+		height: 200px;
+		position: absolute;
+		left: 200px;
+		top: 100px;
+	}
+
+</style>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		
+//		p태그 클릭시 이벤트 발생
+//		$('p').click(function() {
+//		.bind('이벤트', 함수) : jquery 이벤트에 함수를 연결한다.
+		$('p').bind('click', function() {
+//			alert('click');
+//			클릭한 p 태그의 배경색을 오렌지 색으로 변경한다.
+			$(this).css('background-color', 'orange');
+//			클릭한 p 태그를 제외한 나머지 모든 형제 노드를 선택해서 배경색을 흰색으로 변경한다.
+			$(this).siblings('p').css('background-color', 'white');
+
+			/*
+//			위와 같이 실행했을 때 동작이 실행되지 않으면 아래와 같이 3줄로 코딩한다.
+			var ele = $(this);
+			ele.css('background-color', 'orange');
+			ele.siblings('p').css('background-color', 'white');
+			*/
+			
+//			contains() : 인수로 지정된 문자열을 포함하면 true 포함하지 않으면 false를 리턴한다.
+			if($(this).is("p:contains(show)")) {
+				$("#img1").show(1000);
+			}
+			if($(this).is("p:contains(hide)")) {
+				$("#img1").hide(1000);
+			}
+			if($(this).is("p:contains(toggle)")) {
+				$("#img1").toggle(1000);
+			}
+			
+			if($(this).is("p:contains(slideDown)")) {
+				$("#div1").slideDown(1000);
+			}
+			if($(this).is("p:contains(slideUp)")) {
+				$("#div1").slideUp(1000);
+			}
+			if($(this).is("p:contains(slideToggle)")) {
+				$("#div1").slideToggle(1000);
+			}
+			
+			if($(this).is("p:contains(fadeIn)")) {
+				$("#img1").fadeIn(1000);
+				$("#img1").fadeTo(1000, 1.0);
+			}
+			if($(this).is("p:contains(fadeOut)")) {
+				$("#img1").fadeOut(1000);
+			}
+			if($(this).is("p:contains(fadeToggle)")) {
+				$("#img1").fadeToggle(1000);
+			}
+			
+//			fadeTo(재생시간, 투명도) : fade 효과에서 사용하는 opacity 속성값을 직접 설정한다.
+//			fadeTo() 메소드가 실행되서 투명도가 변경되면 변경된 투명도로 fadeIn()가 실행되기 때문에 fadeIn() 메소드에서 fadeTo() 메소드에서
+//			opacity 속성값을 1로 다시 지정해 준다.
+			if($(this).is("p:contains(fadeTo)")) {
+				$("#img1").fadeTo(1000, 0.2);
+			}
+			
+			if($(this).is("p:contains(animate)")) {
+				$("#img1").animate(
+					{
+						'width': '300px',
+						'height': '300px',
+						'left': '600px',
+						'top': '300px'
+					},
+					2000,
+					'linear'
+				);
+				
+//				clone() : 선택된 요소를 복사해서 새로운 요소를 생성한다.
+//				id 속성이 img1인 요소(img 태그)를 복사하고 복사된 요소의 id 속성을 img2로 지정한다.
+				var img2 = $("#img1").clone().attr('id', 'img2');
+//				id 속성이 img1인 요소를 복사해서 만든 id 속성이 img2인 img 태그를 id 속성이 img1인 요소 다음에 추가한다.
+				$("#img1").after(img2);
+//				복사해서 추가한 img 태그에 애니메이션을 추가한다.
+				$("#img2").animate(
+					{
+						'width': '300px',
+						'height': '300px',
+						'left': '550px',
+						'top': '270px',
+						'opacity': '0.5'
+					},
+					2000,
+					'linear'
+				);
+				
+			}
+
+		}); // p 태그 click 이벤트
+
+//		animate() 메소드
+//		여러 css 스타일을 이용해서 새로운 사용자 이펙트를 정의할 수 있다.
+//		$('선택자').animate(스타일[, 재생시간][, 속도함수][, 콜백함수]); // [] 안의 내용은 생략할 수 있다.
+//			스타일   : 이펙트를 구성할 css 스타일 속성을 지정한다.
+//			재생시간 : 이펙트가 지속될 시간을 지정한다.
+//			속도함수 : 이펙트의 시간당 속도를 전달한다.
+//				swing  => 시작 부분과 끝 부분에서는 늦게 움직이고 중간에서 빨라진다.
+//				linear => 시작 부분, 끝 부분, 중간 구분 없이 일정한 속도로 움직인다.
+//			콜백함수 : 이펙트 동작이 완료된 후 실행될 함수를 정의한다.
+
+		$('h2').click(function() {
+//			alert('click');
+			$('p').show();
+			$('p').each(function(index) {
+//				console.log(index);
+				$(this).animate(
+					{'top': 50 * (index + 1) + 'px'} // 스타일
+					, 500                            // 재생 시간
+					, 'swing'                        // 속도 함수
+//					, function() {                   // 콜백 함수
+//						alert('animate() 메소드가 종료된 후 콜백 함수가 실행됩니다.');
+//					}
+				);
+			});
+		});
+		
+	});
+
+</script>
+
+</head>
+<body>
+
+<h2>이펙트 메소드</h2>
+
+<div>
+	<p>show()</p>
+	<p>hide()</p>
+	<p>toggle()</p>
+	<p>slideDown()</p>
+	<p>slideUp()</p>
+	<p>slideToggle()</p>
+	<p>fadeIn()</p>
+	<p>fadeOut()</p>
+	<p>fadeToggle()</p>
+	<p>fadeTo()</p>
+	<p>animate()</p>
+</div>
+
+<div id="div1">
+	<img id="img1" src="./images/img01.jpg">
+</div>
+
+</body>
+</html>
+
+
+

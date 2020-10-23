@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	img {
+		width: 200px;
+		height: 200px;
+	}
+	.addSize {
+		width: 300px;
+		height: 300px;
+	}
+	.onOffImage {
+		display: none;
+	}
+
+</style>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+//	클래스 설정 => 클래스 속성 추가/제거
+//	.addClass() : 선택된 요소에 인수로 전달받은 클래스를 추가한다.
+//	.removeClass() : 선택된 요소에서 인수로 전달받은 클래스를 제거한다.
+//	.toggleClass() : 선택된 요소에 인수로 전달받은 클래스가 없으면 클래스를 추가하고 인수로 전달받은 클래스가 있으면 제거한다.
+//	.hasClass() : 인수로 전달받은 값이 선택된 요소의 클래스로 존재하는가 검사해서 존재하면 true 존재하지 않으면 false를 리턴한다.
+
+	$(function() {
+		$('img').click(function() {
+//			클릭된 img 태그에 addSize 클래스 속성이 설정되었나 검사한다.
+			if ($(this).hasClass('addSize')) {
+//				console.log('있음');
+				$(this).removeClass('addSize');
+			} else {
+//				addSize 클래스가 설정되어있지 않으면 추가한다.
+//				console.log('없음');
+				$(this).addClass('addSize');
+			}
+		});
+		
+		$('#btn').click(function() {
+			$('img').toggleClass('onOffImage');
+		})
+	});
+
+</script>
+
+</head>
+<body>
+
+<button id="btn">이미지 On/Off</button><br/><br/>
+<img src="./images/img01.jpg"/>
+<img src="./images/img02.jpg"/>
+<img src="./images/img03.jpg"/>
+
+</body>
+</html>
+
+
+
+
