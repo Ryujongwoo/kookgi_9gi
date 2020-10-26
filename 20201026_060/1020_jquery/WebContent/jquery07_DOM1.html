@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		
+		$('div > p').eq(0).click(function() {
+			$('div > b').first().toggle();
+		});
+		
+		$('div > p').eq(1).click(function() {
+//			$('div > b').eq(1).toggle();
+			
+//			$('div > b').eq(1).css('color', 'red');
+//			$('div > b').eq(2).toggle().text('기능 연결');
+//			.end() : 마지막으로 실행한 메소드의 실행 전 상태로 선택한 요소의 집합을 복원시킨다.
+			$('div > b').eq(1).css('color', 'red').end().eq(2).toggle().text('기능 연결');
+		});
+		
+		$('div > p').eq(2).click(function() {
+			$('div > b').slice(1, 3).css('color', 'hotpink').end().slice(1, 3).toggle();
+		});
+		
+		$('div > p').eq(3).click(function() {
+			$('div > b').last().css('background-color', 'hotpink').end().last().toggle();
+		});
+		
+	});
+
+</script>
+
+</head>
+<body>
+
+<div>
+	<b>first() : 첫 번째 요소 탐색</b><br/>
+	<b>eq(1) : 인덱스로 탐색</b><br/>
+	<b>slice(1, 3) : 인덱스로 구간 탐색</b><br/>
+	<b>last() : 마지막 요소 탐색</b><br/>
+</div>
+
+<div>
+	<p>first()</p>
+	<p>eq(1)</p>
+	<p>slice(1, 3)</p>
+	<p>last()</p>
+</div>
+
+<a href="jquery07.html">돌아가기</a>
+
+</body>
+</html>
+
+
+

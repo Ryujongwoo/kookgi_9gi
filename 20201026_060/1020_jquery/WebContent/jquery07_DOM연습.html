@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	a {
+		color: white;
+		text-decoration: none;
+	}
+	.menu {
+		background: black;
+		width: 150px;
+		border: 1px solid tomato;
+	}
+	div {
+		color: white;
+	}
+	div:hover, a:hover {
+		background: tomato;
+		color: shyblue;
+		text-decoration: none;
+	}
+
+</style>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+	
+//		calss 속성이 menu인 모든 div 태그의 자식인 div 태그를 숨긴다.
+		$('.menu > div').css('display', 'none');
+		
+//		hover() : 자바스크립트의 mouseenter, mouseleave 이벤트를 하나의 이벤트로 연결하고 선택된 요소에서 mouseenter, mouseleave 이벤트가
+//		발생되었을 때 설정된 함수가 실행된다.
+//		mouseenter 이벤트 : 마우스가 선택된 요소 위로 올라오면 발생된다.
+//		mouseleave 이벤트 : 마우스가 선택된 요소에서 빠져 나가면 발생된다.
+//		hover(mouseenter 이벤트가 발생되면 실행할 함수, mouseleave 이벤트가 발생되면 실행할 함수)
+		$('.menu').hover(
+			function() {
+//				stop() : 선택된 요소에서 실행중인 모든 이펙트 효과를 즉시 중지시킨다.
+				$(this).children('div').stop().slideDown(500);
+			},
+			function() {
+				$(this).children('div').stop().slideUp(500);
+			}
+		);
+		
+		/*
+//		화살표 함수에서 실행할 문장이 1줄일 경우 {}를 생략할 수 있다.
+		$('.menu').hover(
+			() => $('.menu').children('div').slideDown(),
+			() => $('.menu').children('div').slideUp()
+		);
+		*/
+	}); 
+
+</script>
+
+</head>
+<body>
+
+<h2>DOM 탐색 메소드</h2>
+
+<div id="menu1" class="menu">
+	<a href="./jquery07_DOM1.html">필터링 메소드</a>
+	<div>first()</div>
+	<div>eq()</div>
+	<div>slice()</div>
+	<div>last()</div>
+	<div>&nbsp;</div>
+</div>
+
+<div id="menu2" class="menu">
+	<a href="./jquery07_DOM2.html">필터링 메소드</a>
+	<div>find()</div>
+	<div>children()</div>
+	<div>parent()</div>
+	<div>next()</div>
+	<div>&nbsp;</div>
+</div>
+
+<div id="menu3" class="menu">
+	<a href="./jquery07_DOM3.html">기타 탐색 메소드</a>
+	<div>add()</div>
+	<div>is()</div>
+	<div>&nbsp;</div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

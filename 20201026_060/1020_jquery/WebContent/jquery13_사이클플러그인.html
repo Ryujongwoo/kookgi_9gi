@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!--
+	이미지를 자동으로 넘겨주는 cycle 플러그인
+	cycle 플러그인 효과를 적용해 볼 수 있는 API 사이트 => http://malsup.com/jquery/cycle/
+-->
+<script type="text/javascript" src="./js/jquery.cycle.all.js"></script>
+<script type="text/javascript" src="./js/jquery.easing.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		$('#shuffle').cycle({ 
+		    fx:     'shuffle', 
+		    easing: 'easeOutBack', 
+		    delay:  -4000 
+		});
+		
+		$('#up').cycle({ 
+		    fx:    'curtainX', 
+		    sync:  false, 
+		    delay: -2000 
+		 });
+	});
+
+</script>
+
+</head>
+<body>
+
+<div id="shuffle">
+	<img src="./images/img01.jpg"/>
+	<img src="./images/img02.jpg"/>
+	<img src="./images/img03.jpg"/>
+	<img src="./images/img04.jpg"/>
+	<img src="./images/img05.jpg"/>
+</div>
+
+<div id="up">
+	<img src="./images/img01.jpg"/>
+	<img src="./images/img02.jpg"/>
+	<img src="./images/img03.jpg"/>
+	<img src="./images/img04.jpg"/>
+	<img src="./images/img05.jpg"/>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

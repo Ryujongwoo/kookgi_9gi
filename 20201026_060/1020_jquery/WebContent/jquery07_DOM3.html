@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		
+		/*
+		$('p').eq(0).css('color', 'red');
+		$('span').css('color', 'red');
+		*/
+		
+//		0번째 p 태그를 선택한 후 추가로 span 태그를 선택한다.
+		$('p:eq(0)').add('span').css('color', 'blue');
+		
+		$('div').children().click(function() {
+			if ($(this).is('span')) {
+				$(this).css('background-color', 'lime');
+			}
+			if ($(this).is('b')) {
+				$(this).css('background-color', 'skyblue');
+			}
+			if ($(this).is('p')) {
+				$(this).css('background-color', 'hotpink');
+			}
+		});
+		
+	});
+
+</script>
+
+</head>
+<body>
+
+<div>
+	<p>add()</p>
+	<span>add() : 선택된 요소에 추가적으로 selector 표현식을 작성한다.</span>
+	<p>is()</p>
+	<b>is() : 선택된 요소 중에서 원하는 요소가 있나 확인한다.</b>
+</div>
+
+<a href="jquery07.html">돌아가기</a>
+
+</body>
+</html>

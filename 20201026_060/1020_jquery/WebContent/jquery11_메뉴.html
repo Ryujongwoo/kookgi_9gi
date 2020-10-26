@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	main_menu > li {
+		width: 300px;
+	}
+	.sub_menu1 {
+		cursor: pointer;
+	}
+	.sub_menu2 {
+		display: none;;
+	}
+
+</style>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		$('b').click(function() {
+//			1. 클릭하면 메뉴가 보이고 다시 클릭하면 메뉴가 사라지게 할 때
+//			$(this).next().toggle();
+//			2. 클릭하면 메뉴가 열리고 다시 클릭하면 메뉴가 닫히게 할 때
+//			$(this).next().slideToggle();
+//			3. 클릭하면 메뉴가 열리고 기존에 열려있던 다른 메뉴는 닫히게 할 때
+//			$(this).next().slideDown();
+//			$(this).parent().siblings().find('ul').slideUp();
+//			end() 메소드를 이용하면 위의 2줄을 1줄로 표현할 수 있다.
+			$(this).next().slideDown().end().parent().siblings().find('ul').slideUp()
+		})
+	})
+
+</script>
+
+</head>
+<body>
+
+<h2>메뉴 만들기</h2>
+
+<ul type="square" class="main_menu">
+	<li class="sub_menu1">
+		<b>1. css selector</b>
+		<ul type="disc" class="sub_menu2">
+			<li>tag로 선택하기</li>
+			<li>id로 선택하기</li>
+			<li>class로 선택하기</li>
+			<li>자식 선택자로 선택하기</li>
+			<li>자손 선택자로 선택하기</li>
+			<li>:nth-child로 선택하기</li>
+			<li>:first-child로 선택하기</li>
+			<li>:last-child로 선택하기</li>
+		</ul>
+	</li>
+	
+	<li class="sub_menu1">
+		<b>2. 속성 selector</b>
+		<ul type="disc" class="sub_menu2">
+			<li>[attr]</li>
+			<li>[attr=value]</li>
+			<li>[attr!=value]</li>
+		</ul>
+	</li>
+	
+	<li class="sub_menu1">
+		<b>3. 폼 selector</b>
+		<ul type="disc" class="sub_menu2">
+			<li>input:input타입</li>
+		</ul>
+	</li>
+	
+	<li class="sub_menu1">
+		<b>4. 사용자 selector</b>
+		<ul type="disc" class="sub_menu2">
+			<li>:first</li>
+			<li>:last</li>
+			<li>:eq</li>
+			<li>:slice</li>
+		</ul>
+	</li>
+</ul>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

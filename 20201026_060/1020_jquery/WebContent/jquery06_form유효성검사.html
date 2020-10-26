@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+//	폼 유효성 검사
+//	$(document).ready(function() {
+//	$(function() {
+	$(() => {
+//		alert('onload');
+//		class 속성이 error로 지정된 에러 메시지를 숨긴다.
+		$('.error').hide();
+//		id 속성이 single로 지정된 form에서 submit 버튼이 클릭되면 실행할 이벤트를 지정한다.
+		$('#single').submit(function() {
+//			alert('submit');
+//			폼의 유효성을 검사해서 오류가 발생되면 false를 리턴시켜서 action 페이지로 넘어가지 않게 하고 오류가 발생되지 않으면 true를
+//			리턴시켜서 action 페이지로 넘어가게 한다.
+//			console.log($('#infoBox').val())
+			if ($('#infoBox').val() == null || $.trim($('#infoBox').val()) == '') {
+				$('#infoBox').val('');
+				$('#infoBox').focus();
+				$('.error').show();
+				return false;
+			}
+			return true;
+		});
+		
+//		체크 박스를 선택하고 확인 버튼을 클릭하면 체크 여부를 확인해 그 결과를 id가 result로 지정된 div 태그 내부에 출력한다.
+		$('#confirm').click(function() {
+//			alert('확인 버튼 클릭');
+
+//			선택된 과일 가격이 표시될 div 태그 내부의 내용을 지워준다.
+//			document.getElementById('result').innerHTML = '';
+//			empty() : 선택된 요소 내부의 내용을 지운다.
+			$('#result').empty();
+			
+//			name 속성으로 chk가 지정된 체크 상자의 체크된 항목의 개수를 검사한다.
+			if ($('input[name=chk]:checked').length == 0) {
+//				alert('한 개 이상 체크해 주세요');
+//				text() : 선택된 태그 사이에 입력된 문자열을 얻어오거나 넣어준다. => 태그가 적용되지 않는다.
+//				append() : 선택된 태그 사이에 입력된 문자열을 넣어준다. => 태그가 적용된다.
+//				$('#result').text('<b style="color: red;">한 개 이상 체크해 주세요</b>');
+//				$('#result').text('');
+//				console.log($('#result').text());
+				$('#result').append('<b style="color: red;">한 개 이상 체크해 주세요</b>');
+			} else {
+//				each() : 선택된 요소의 index를 전달받아 각 요소마다 콜백 함수를 실행한다.
+				$('input[name=chk]:checked').each(function(index) {
+//					console.log(index);
+//					체크한 체크 상자 중에서 index에 해당되는 요소를 얻어온다.
+					var chk = $('input[name=chk]:checked').eq(index);
+					
+//	형제(sibling) 요소 탐색
+//	.sibling() : 선택된 요소의 형제 요소 중에서 지정한 선택자에 해당되는 모든 요소를 선택한다.
+//	.next() : 선택된 요소 바로 다음에 위치한 형제 요소를 선택한다.
+//	.nextAll() : 선택된 요소 바로 다음에 위치한 형제 요소를 모두 선택한다.
+//	.nextUntil() : 선택된 요소 바로 다음에 위치한 형제 요소 중에서 지정한 선택자에 해당되는 요소 바로 이전까지의 요소를 모두 선택한다.
+//	.prev() : 선택된 요소 바로 이전에 위치한 형제 요소를 선택한다.
+//	.prevAll() : 선택된 요소 바로 이전에 위치한 형제 요소를 모두 선택한다.
+//	.prevUntil() : 선택된 요소 바로 이전에 위치한 형제 요소 중에서 지정한 선택자에 해당되는 요소 바로 다음까지의 요소를 모두 선택한다.
+					
+//					console.log(chk.next().text()); // 과일 이름
+//					console.log(chk.val()); // 과일 가격
+					var fruit = chk.next().text();
+					var price = chk.val();
+					$('#result').append('과일 이름 : ' + fruit + ', 가격 : ' + price + '<br/>');
+				});
+			}
+			
+		}); // 확인 버튼
+		
+//		체크 상자가 클릭되면 모든 체크 상자가 체크되었나 검사해서 전체 선택 체크 상자를 선택 또는 해제한다.
+		$('input[name=chk]').click(function() {
+//			name 속성이 chk인 요소의 개수와 name 속성이 chk인 요소 중에서 체크된 요소의 개수를 비교한다.
+			console.log($('input[name=chk]').length, $('input[name=chk]:checked').length);
+			if ($('input[name=chk]').length == $('input[name=chk]:checked').length) {
+//				모든 체크 상자가 체크되면 name 속성이 all인 요소의 checked 프로퍼티를 true로 변경한다.
+				$('input[name=all]').prop('checked', true);
+			} else {
+//				모든 체크 상자가 체크되지 않았으면 name 속성이 all인 요소의 checked 프로퍼티를 false로 변경한다.
+				$('input[name=all]').prop('checked', false);
+			}
+		});
+		
+	});
+
+//	전체 선택 체크 상자가 클릭되면 모든 체크 상자를 체크 또는 해제한다.
+	function allChk(bool) {
+//		console.log(bool);
+		$('input[name=chk]').each(function(index) {
+//			$('input[name=chk]').eq(index).prop('checked', bool);
+			$(this).prop('checked', bool);
+		});
+	}
+	
+</script>
+
+</head>
+<body>
+
+<form id="single" action="ok.html" method="post">
+	<div>
+		<span>사용자 id</span>
+		<input id="infoBox" type="text" name="userid"/>
+		<span class="error" style="color: red; font-weight: bold;">반드시 입력해야 합니다.</span>
+	</div>
+	<input type="submit" value="입력하기"/>
+</form>
+
+<fieldset style="width: 300px;">
+	<legend>체크 여부 확인</legend>
+	<input type="checkbox" name="all" onclick="allChk(this.checked)"/>전체선택<br/>
+	<input type="checkbox" name="chk" value="1000"/><b>사과</b><br/>
+	<input type="checkbox" name="chk" value="2000"/><b>바나나</b><br/>
+	<input type="checkbox" name="chk" value="3000"/><b>오렌지</b><br/>
+	<input id="confirm" type="button" value="확인"/><br/>
+	<span>선택한 과일 가격</span>
+	<div id="result"></div>
+</fieldset>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

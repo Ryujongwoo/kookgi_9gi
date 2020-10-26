@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	img {
+		width: 150px;
+		height: 150px;
+		float: left;
+	}
+	.sel {
+		width: 140px;
+		height: 140px;
+		left: 300px;
+		border: 5px dotted tomato;
+		position: absolute;
+	}
+	#menu {
+		overflow: auto;
+	}
+	#memubox {
+		position: relative;
+	}
+	button {
+		width: 150px;
+		height: 50px;
+		font-size: 20pt;
+		margin-left: 300px;
+	}
+
+</style>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		
+//		자바스크립트는 주기적인 작업을 실행하기 위해 setInterval() 함수와 setTimeout() 함수를 제공한다.
+//		이 두가지 함수는 비슷하게 실행되지만 중요한 차이점을 가진다.
+//		setInterval(실행할 함수, 시간) : 일정한 시간 간격으로 작업을 반복해서 실행한다.
+//		clearInterval() : setInterval() 함수의 실행을 중지시킨다.
+//		setTimeout(실행할 함수, 시간) : 일정한 시간 후에 작업을 한 번 실행한다.
+//		clearTimeout() : setTimeout() 함수의 실행을 중지시킨다.
+//		clearInterval(), clearTimeout() 함수는 실행중인 작업을 중지시키는 것이 아니고 다음 작업 스케쥴이 중지된다.
+		
+//		var count = 0;
+		setInterval(function() {
+//			console.log('setInterval()' + ++count);
+//			appendTo() : 선택된 요소를 해당 요소의 마지막에 추가한다. => 동작은 append() 함수와 동일하지만 소스와 타겟의 위치가 반대이다.
+//			선택된 class 속성이 active인 첫 번째 요소를 선택해서 class 속성이 active인 요소의 마지막 위치에 추가한다.
+//			=> 메뉴의 첫 번째 이미지가 메뉴의 마지막 이미지로 이동된다.
+			$('.active').first().appendTo($('#menu'));
+		}, 1);
+		
+		$('button').click(function() {
+//			버튼이 클릭되면 img 태그에 active 라는 태그를 추가하고 버튼 위의 문자열을 stop으로 변경한 다음 이미지 롤링을 시작하며 
+//			다시 버튼이 클릭되면 img 태그에서 active 라는 클래스를 제거하고 버튼 위의 문자열을 start로 변경한 다음 이미지 롤링을 종료한다.
+			$('img').toggleClass('active');
+			if ($('button').text() == 'start') {
+				$('button').text('stop');
+			} else {
+				$('button').text('start');
+			}
+		});
+		
+	});
+
+</script>
+
+</head>
+<body>
+
+<h2>점심 식사 메뉴 뽑기</h2>
+<div id="memubox">
+	<div class="sel"></div>
+	<div id="menu">
+		<img alt="떡뽁이" src="./images/ddbg.jpg"/>
+		<img alt="돈까스" src="./images/don.jpg"/>
+		<img alt="햄버거" src="./images/hamburg.jpg"/>
+		<img alt="라면" src="./images/lamyun.jpg"/>
+		<img alt="막창" src="./images/makchang.jpg"/>
+	</div>
+	<button>start</button>
+</div>
+
+</body>
+</html>

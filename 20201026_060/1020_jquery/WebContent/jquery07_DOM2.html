@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		
+		$('div').find('b').css({'font-size': '30px', 'color': 'tomato'});
+		$('div').children('#chd').text('손오공');
+		$('span').parent().css('background', 'skyblue');
+		$('span').parents('div').css('background', 'lime');
+		$('p').eq(2).next().css('background', 'hotpink');
+		$('p').eq(2).prev().css('background', 'yellow');
+		
+	});
+
+</script>
+
+</head>
+<body>
+
+<div>
+	find('선택자') : 선택된 요소 중에서 탐색하고자 하는 요소를 찾는다.</br>
+	children('선택자') : 선택된 요소의 자식 요소를 찾는다.<br/>
+	parent(), parents('선택자') : 선택된 요소의 부모 요소를 찾는다.</br>
+	next('선택자') : 선택된 요소 다음의 요소를 찾는다.<br/>
+</div>
+
+<div>
+	<p><b>홍길동</b></p>
+	<p id="chd">임꺽정</p>
+	<p>장길산<span>도적넘</span></p>
+	<p>일지매</p>
+	<p><b>성춘향</b></p>
+</div>
+
+<a href="jquery07.html">돌아가기</a>
+
+</body>
+</html>

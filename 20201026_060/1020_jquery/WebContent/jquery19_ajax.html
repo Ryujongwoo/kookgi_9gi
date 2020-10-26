@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	* {
+		margin: 0px;
+		padding: 0px;
+	}
+	body {
+		width: 1000px;
+		margin: 50px auto;
+	}
+	fieldset {
+		width: 230px;
+		height: 50px;
+	}
+	table {
+		width: 400px;
+		border: 1px solid #000000;
+	}
+	table tr:nth-child(odd) {
+		background: orange;
+	}
+	table tr:nth-child(even) {
+		background: hotpink;
+	}
+	input {
+		border-radius: 5px;
+		height: 25px;
+	}
+
+</style>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		
+		$('#emp_search').click(function() {
+//			조회할 사원 번호를 얻어온다.
+			var empid = $('input[name=empid]').val();
+//			alert(empid);
+
+//			3자리 숫자만 입력받는다.
+			if (!isNaN(empid) && empid.length == 3) {
+				
+//				jquery AJAX
+				$.ajax({
+					
+					url:      'emplist.xml',		// 호출할 페이지 주소 또는 읽어올 xml 파일 이름
+					cache:    false,				// 사용자 캐시 사용 여부
+					method:   'get',				// 서버에 데이터를 전송하는 방식
+					asyn:     false,				// 비동기식을 사용한다.(false를 쓰면 동기식)
+					dataType: 'xml',				// 전송받는 데이터 타입(xml, json, html, script)
+					data:     {'key': 'value'},		// 서버로 전송할 데이터
+					success:  function(data) {		// ajax가 성공했을 때 실행할 콜백 함수, 함수의 인수로 서버에서 넘어온 데이터가 저장된다.
+//						alert('ajax 성공~~~~~');
+						console.log('ajax 성공~~~~~');
+						console.log('data' + data);
+						
+//						검색된 사원 번호에 해당되는 모든 데이터를 출력해야 하기 때문에 검색한 사원 번호의 부모 요소를 선택한다.
+						var empInfo = $(data).find('EMPLOYEE_ID:contains(' + empid + ')').parent();
+						
+//						검색된 사원 번호에 해당되는 데이터가 있으면 화면에 출력한다.
+						if ($(empInfo).is('ROW')) {
+							
+//							table 태그의 자손 태그 input의 개수 만큼 반복하며 xml 파일에서 읽어온 데이터를 채워 넣는다.
+							$('table input').each(function(index) {
+//								console.log(index);
+								console.log($(empInfo).children().eq(index).text());
+								$(this).val($(empInfo).children().eq(index).text());
+							});
+							
+						} else {
+							alert(empid + '는 존재하지 않는 사원 번호 입니다.');
+							$('input[name=empid]').val('');
+							$('input[name=empid]').focus();
+						}
+					},
+					error:    function(request) {			// ajax가 실패했을 때 실행할 콜백 함수
+//						alert('ajax 실패~~~~~');
+						console.log('ajax 실패~~~~~');
+						console.log('error code:' + request.status);
+					}
+					
+				}); // ajax 끝
+				
+			} else {
+				alert('정확한 사원 번호를 입력하세요');
+				$('input[name=empid]').val('');
+				$('input[name=empid]').focus();
+			}       // if 끝
+			
+		});         // click 끝
+		
+	});             // onload 끝
+
+	
+</script>
+
+</head>
+<body>
+
+<h2>데이터 가져오기</h2>
+
+<fieldset>
+	<legend>사원 정보 조회</legend>
+	<input type="text" name="empid"/>
+	<input type="button" value="조회" id="emp_search"/>
+</fieldset><br/>
+
+<table>
+	<tr>
+		<th>사원번호</th>
+		<td><input type="text" name="idx"/></td>
+	</tr>
+	<tr>
+		<th>이름</th>
+		<td><input type="text" name="name"/></td>
+	</tr>
+	<tr>
+		<th>이메일</th>
+		<td><input type="text" name="email"/></td>
+	</tr>
+	<tr>
+		<th>내선번호</th>
+		<td><input type="text" name="phone"/></td>
+	</tr>
+	<tr>
+		<th>입사일</th>
+		<td><input type="text" name="hire"/></td>
+	</tr>
+</table>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

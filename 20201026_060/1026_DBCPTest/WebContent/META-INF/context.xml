@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+
+	<!--
+		name : 커넥션 풀 이름, "jdbc/" 부분은 항상 똑같이 쓰고 "/" 뒤에 커넥션 풀 이름을 적는다.
+		type : 데이터베이스 연결에 사용할 자바 클래스 이름, 무조건 "javax.sql.DataSource"를 사용한다.
+		auth : DBCP를 tomcat이 관리한다는 의미로 무조건 "Container"를 사용한다.
+		maxActive : 데이터베이스 커텍션 풀의 최대 개수 => 최대 연결 허용 개수
+		maxIdle : 접속을 유지하는 데이터베이스 커넥션 풀의 최대 개수 => 항상 연결을 유지하는 커넥션 풀의 개수
+		maxWait : 데이터베이스 접속을 위해 기다리는 최대 시간 => -1을 쓰면 기다리지 않고 바로 접속한다.
+		username : 사용자 계정
+		password : 사용자 비밀번호
+		driverClassName : 데이터베이스 드라이버 클래스 이름
+		url : 데이터베이스 접속을 위한 경로
+	-->
+
+	<Resource
+		name = "jdbc/TestDB" 
+		type = "javax.sql.DataSource" 
+		auth = "Container"
+		maxActive = "100" 
+		maxIdle = "30" 
+		maxWait = "-1" 
+		username = "koreait" 
+		password = "0000" 
+		driverClassName = "oracle.jdbc.driver.OracleDriver"
+		url = "jdbc:oracle:thin:@localhost:1521:xe"/>
+</Context>

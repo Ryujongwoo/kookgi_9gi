@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+//	요소의 삭제
+//	.remove() : 선택된 요소를 DOM 트리에서 삭제한다. 삭제된 요소와 연관된 jquery 데이터나 이벤트도 같이 삭제된다.
+//	.detach() : 선택된 요소를 DOM 트리에서 삭제한다. 삭제된 요소와 연관된 jquery 데이터나 이벤트도 같이 유지된다. => 잘라내기
+//	.empty() : 선택된 요소의 모든 자식 요소를 삭제한다.
+//	.unwrap() : 선택된 요소의 부모 요소를 삭제한다. 부모 요소만 삭제되고 자식 요소는 삭제되지 않는다.
+
+	$(function() {
+		$('p:eq(0)').click(function() {
+			var remove = $(this).remove();
+			console.log('remove');
+			$('h2').append(remove);
+		});
+		$('p:eq(1)').click(function() {
+			var detach = $(this).detach();
+			console.log('detach');
+			$('h2').append(detach);
+		});
+		$('p:eq(2)').click(function() {
+//			$(this).empty();
+			$(this).parent().empty();
+		});
+		$('p:eq(3)').click(function() {
+			$(this).unwrap();
+		});
+	});
+
+</script>
+
+</head>
+<body>
+
+<h2>엘리먼트 제거하기</h2>
+
+<div>
+	<p>지우기 - remove</p>
+	<p>잘라내기 - detach</p>
+	<p>비우기 - empty</p>
+	<p>부모 지우기 - unwrap</p>
+</div>
+
+</body>
+</html>
