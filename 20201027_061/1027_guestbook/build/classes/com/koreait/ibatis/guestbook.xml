@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- DOCTYPE이 sqlMap은 처리할 SQL 명령을 기억하는 xml 파일이다. -->
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="com.koreait.vo.GuestbookVO">
+	<!-- id : SQL 명령을 식별한다. -->
+	<!-- parameterClass : SQL 명령으로 전달되는 데이터의 타입을 적는다. -->
+	<!-- resultClass : SQL 명령문에의해 출력되는 데이터의 타입을 적는다. -->
+
+	<!-- 게시글 한 건을 저장한다. -->
+	<insert id="insert" parameterClass="com.koreait.vo.GuestbookVO">
+		<!-- nextval => 시퀀스의 값을 1증가 시킨다. -->
+		insert into guestbook (idx, name, password, memo, ip) values (guestbook_idx_seq.nextval, #name#, #password#, #memo#, #ip#)
+	</insert>
+	
+	<!-- 테이블에 저장된 전체 글의 개수를 얻어온다. -->
+	<select id="selectCount" resultClass="int">
+		select count(*) from guestbook
+	</select>
+	
+	<!-- 1페이지 분량의 글 목록을 얻어온다. -->
+	<select id="selectList" parameterClass="java.util.HashMap" resultClass="com.koreait.vo.GuestbookVO">
+		<!-- <![CDATA[ 와 ]]> 사이에 입력된 내용은 무조건 문자열로 취급된다. -->
+		<![CDATA[
+		select * from (
+			select rownum rnum, TT.* from (
+				select * from guestbook order by idx desc
+			) TT where rownum <= #endNo#
+		) where rnum >= #startNo#
+		]]>
+	</select>
+	
+</sqlMap>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
