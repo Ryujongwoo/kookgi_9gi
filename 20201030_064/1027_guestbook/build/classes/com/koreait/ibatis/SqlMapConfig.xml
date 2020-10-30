@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DOCTYPE이 sqlMapConfig은 iBATIS의 환경을 설정하는 xml 파일이다. -->
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" 
+"http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+
+	<!-- 데이터베이스 연결 정보가 저장된 properties 파일의 프로젝트상의 경로 -->
+	<properties resource="com/koreait/ibatis/db.properties" />
+	<settings 
+		cacheModelsEnabled="true" 
+		enhancementEnabled="true"
+		lazyLoadingEnabled="true" 
+		maxRequests="32" 
+		maxSessions="10"
+		maxTransactions="5" 
+		useStatementNamespaces="false" 
+	/>
+	
+	<!-- 별명을 설정한다. -->
+	<typeAlias alias="vo" type="com.koreait.vo.GuestbookVO" />
+	<typeAlias alias="param" type="com.koreait.vo.Param" />
+	
+	<transactionManager type="JDBC">
+		<dataSource type="SIMPLE">
+			<property name="JDBC.Driver" value="${driver}" />
+			<property name="JDBC.ConnectionURL" value="${url}" />
+			<property name="JDBC.Username" value="${username}" />
+			<property name="JDBC.Password" value="${password}" />
+		</dataSource>
+	</transactionManager>
+	<!-- 데이터베이스에 연결한 후 실행할 sql 명령이 저장된 파일의 프로젝트상의 경로 -->
+	<sqlMap resource="com/koreait/ibatis/guestbook.xml" />
+	
+</sqlMapConfig> 
+
+
+
+
+
+
+
+
+

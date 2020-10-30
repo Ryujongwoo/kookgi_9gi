@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- DOCTYPE이 mapper인 xml 파일은 실행할 sql 명령을 입력한다. -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.category.CategoryVO">
+
+	<!-- id : sql 명령을 식별한다. -->
+	<!-- parameterType : sql 명령으로 전달되는 데이터의 타입을 적는다. -->
+	<!-- resultType : sql 명령 실행결과 리턴되는 데이터의 타입을 적는다. -->
+	
+	<!-- 메인 카테고리를 저장한다. -->
+	<insert id="insert" parameterType="com.koreait.category.CategoryVO">
+		<!--
+			ibatis는 parameterClass로 지정된 객체 형태로 sql 명령으로 넘어온 데이터를 #과 # 사이에 코딩했지만 mybatis는 parameterType으로
+			지정된 객체 형태로 sql 명령으로 넘어온 데이터를 #{와 } 사이에 코딩한다.
+			nextval => 시퀀스를 증가시킨다. currval => 현재 시퀀스 값을 의미한다.
+		-->
+		insert into category (idx, category, ref, lev, seq) 
+		values (category_idx_seq.nextval, #{category}, category_idx_seq.currval, 0, 0)
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
