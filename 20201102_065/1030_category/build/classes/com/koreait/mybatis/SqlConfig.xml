@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- DOCTYPE이 configuration인 xml 파일은 데이터베이스 연결 정보와 실행할 sql 명령이 입력된 xml 파일의 위치를 입력한다. -->
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 데이터베이스 연결 정보 -->
+	<properties resource="com/koreait/mybatis/db.properties" />
+
+	<!-- 별명 지정 -->	
+	<typeAliases>
+		<typeAlias type="com.koreait.category.CategoryVO" alias="vo"/>
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- 실행할 sql 명령이 저장된 xml 파일 -->
+	<mappers>
+		<mapper resource="com/koreait/mybatis/category.xml" />
+	</mappers>
+</configuration>
