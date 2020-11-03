@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- DOCTYPE이 mapper인 xml 파일은 실행할 sql 명령을 입력한다. -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.category.CategoryVO">
+
+	<!-- id : sql 명령을 식별한다. -->
+	<!-- parameterType : sql 명령으로 전달되는 데이터의 타입을 적는다. -->
+	<!-- resultType : sql 명령 실행결과 리턴되는 데이터의 타입을 적는다. -->
+	
+	<!-- 메인 카테고리를 저장한다. -->
+	<insert id="insert" parameterType="com.koreait.category.CategoryVO">
+		<!--
+			ibatis는 parameterClass로 지정된 객체 형태로 sql 명령으로 넘어온 데이터를 #과 # 사이에 코딩했지만 mybatis는 parameterType으로
+			지정된 객체 형태로 sql 명령으로 넘어온 데이터를 #{와 } 사이에 코딩한다.
+			nextval => 시퀀스를 증가시킨다. currval => 현재 시퀀스 값을 의미한다.
+		-->
+		insert into category (idx, category, ref, lev, seq) 
+		values (category_idx_seq.nextval, #{category}, category_idx_seq.currval, 0, 0)
+	</insert>
+	
+	<!-- 테이블에 저장된 모든 카테고리를 글 그룹(ref)의 내림차순, 같은 글 그룹에서는 글의 순서(seq)의 오름차순으로 얻어온다. -->
+	<select id="selectList" resultType="vo">
+		select * from category order by ref desc, seq asc
+	</select>
+	
+	<!-- 같은 카테고리 그룹에서 카테고리 출력 순서를 조정하기 위해 seq를 수정한다. -->
+	<update id="increment" parameterType="java.util.HashMap">
+		<!-- ref, seq는 category 테이블의 필드이고 #{ref}, #{seq}는 HashMap 객체에 저장되서 넘어온 데이터의 key -->
+		update category set seq = seq + 1 where ref = #{ref} and seq >= #{seq}
+	</update>
+	
+	<!-- 서브 카테고리를 저장한다. -->
+	<insert id="reply" parameterType="vo">
+		insert into category (idx, category, ref, lev, seq) values (category_idx_seq.nextval, #{category}, #{ref}, #{lev}, #{seq})
+	</insert>
+	
+	<!-- 카테고리 한 건을 얻어온다. -->
+	<select id="selectByIdx" parameterType="int" resultType="vo">
+		select * from category where idx = #{idx}
+	</select>
+	
+	<!-- 카테고리 한 건을 삭제한다. -->
+	<delete id="delete" parameterType="int">
+		delete from category where idx = #{idx}
+	</delete>
+	
+	<!-- 카테고리 한 건을 수정한다. -->
+	<update id="update" parameterType="vo">
+		update category set category = #{category} where idx = #{idx}
+	</update>
+	
+	<!-- category 필드를 "삭제된 카테고리 입니다."로 수정한다. -->
+	<update id="deleteCategory" parameterType="int">
+		update category set category = '삭제된 카테고리 입니다.' where idx = #{idx}
+	</update>
+	
+	<!-- category 필드를 "yes"로 수정한다. -->
+	<update id="deleteCheck" parameterType="int">
+		update category set deleteCheck = 'yes' where idx = #{idx}
+	</update>
+	
+	<!-- category 필드를 "no"로 수정한다. -->
+	<update id="deleteRestore" parameterType="int">
+		update category set deleteCheck = 'no' where idx = #{idx}
+	</update>
+	
+	<!-- deleteReport 필드의 값을 1증가 시킨다. -->
+	<update id="deleteReport" parameterType="int">
+		update category set deleteReport = deleteReport + 1 where idx = #{idx}
+	</update>
+	
+	<!-- 삭제할 카테고리와 삭제할 카테고리의 모든 서브 카테고리 목록을 얻어온다. -->
+	<select id="deleteList" parameterType="vo" resultType="vo">
+		select * from category where ref = #{ref} and lev > #{lev} and seq > #{seq} or idx = #{idx} order by ref desc, seq asc
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
