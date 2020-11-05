@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.vo.FreeboardVO">
+
+	<!-- 메인글을 저장한다. -->
+	<insert id="insert" parameterType="vo">
+		insert into freeboard (idx, name, password, subject, content, ip, notice) 
+		values (freeboard_idx_seq.nextval, #{name}, #{password}, #{subject}, #{content}, #{ip}, #{notice})
+	</insert>
+	
+	<!-- 메인글의 개수를 얻어온다. -->
+	<select id="selectCount" resultType="int">
+		select count(*) from freeboard
+	</select>
+	
+	<!-- 1페이지 분량의 메인글을 얻어온다. -->
+	<select id="selectList" parameterType="java.util.HashMap" resultType="vo">
+		<![CDATA[
+			select * from (
+				select rownum rnum, TT.* from (
+					select * from freeboard order by idx desc
+				) TT where rownum <= #{endNo}
+			) where rnum >= #{startNo}
+		]]>
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
