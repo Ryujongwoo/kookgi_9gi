@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.vo.FreeboardVO">
+
+	<!-- 메인글을 저장한다. -->
+	<insert id="insert" parameterType="vo">
+		insert into freeboard (idx, name, password, subject, content, ip, notice) 
+		values (freeboard_idx_seq.nextval, #{name}, #{password}, #{subject}, #{content}, #{ip}, #{notice})
+	</insert>
+	
+	<!-- 메인글의 개수를 얻어온다. -->
+	<select id="selectCount" resultType="int">
+		select count(*) from freeboard
+	</select>
+	
+	<!-- 1페이지 분량의 메인글을 얻어온다. -->
+	<select id="selectList" parameterType="java.util.HashMap" resultType="vo">
+		<![CDATA[
+			select * from (
+				select rownum rnum, TT.* from (
+					select * from freeboard order by idx desc
+				) TT where rownum <= #{endNo}
+			) where rnum >= #{startNo}
+		]]>
+	</select>
+	
+	<!-- 조회수를 증가시킨다. -->
+	<update id="increment" parameterType="int">
+		update freeboard set hit = hit + 1 where idx = #{idx}
+	</update>
+	
+	<!-- 메인글 1건을 얻어온다. -->
+	<select id="selectByIdx" parameterType="int" resultType="vo">
+		select * from freeboard where idx = #{idx}
+	</select>
+	
+	<!-- 글 1건을 삭제한다. -->
+	<delete id="delete" parameterType="int">
+		delete from freeboard where idx = #{idx}
+	</delete>
+	
+	<!-- 글 1건을 수정한다. -->
+	<update id="update" parameterType="vo">
+		update freeboard set name = #{name}, subject = #{subject}, content = #{content}, notice = #{notice} where idx = #{idx}
+	</update>
+	
+	<!-- 공지글을 얻어온다. -->
+	<select id="selectNotice" resultType="vo">
+		select * from freeboard where notice = 'notice' order by idx desc
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.vo.FreeboardCommentVO">
+
+	<!-- 댓글 1건을 저장한다. -->
+	<insert id="insertComment" parameterType="comment">
+		insert into freeboardcomment (idx, ref, name, password, content, ip) 
+		values (freeboardcomment_idx_seq.nextval, #{ref}, #{name}, #{password}, #{content}, #{ip})
+	</insert>
+	
+	<!-- 댓글 개수를 얻어온다. -->
+	<select id="commentCount" parameterType="int" resultType="int">
+		select count(*) from freeboardcomment where ref = #{idx}
+	</select>
+	
+	<!-- 댓글 목록을 얻어온다. -->
+	<select id="selectCommentList" parameterType="int" resultType="comment">
+		select * from freeboardcomment where ref = #{idx} order by idx desc
+	</select>
+	
+	<!-- 댓글 1건을 얻어온다. -->
+	<select id="selectCommentByIdx" parameterType="int" resultType="comment">
+		select * from freeboardcomment where idx = #{idx}
+	</select>
+	
+	<!-- 댓글 1건을 삭제한다. -->
+	<delete id="deleteComment" parameterType="int">
+		delete from freeboardcomment where idx = #{idx}
+	</delete>
+	
+	<!-- 댓글 1건을 수정한다. -->
+	<update id="updateComment" parameterType="comment">
+		update freeboardcomment set content = #{content} where idx = #{idx}
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
