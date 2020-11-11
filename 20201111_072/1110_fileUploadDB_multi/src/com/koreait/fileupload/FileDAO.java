@@ -15,8 +15,8 @@ public class FileDAO {
 	public FileDAO() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-			conn = DriverManager.getConnection(url, "C##koreait", "0000");
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			conn = DriverManager.getConnection(url, "koreait", "0000");
 //			System.out.println("연결 성공 : " + conn);
 		} catch (Exception e) {
 			e.printStackTrace();
