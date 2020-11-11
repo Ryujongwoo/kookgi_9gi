@@ -1,0 +1,19 @@
+※ 오라클에 접속하기
+SQL> connect system 엔터
+※ 실제로 비밀번호를 입력할 때는 문자가 화면에 표시되지 않는다.
+Enter Password : 0000 엔터
+Connected.
+
+※ 계정 만들기
+SQL> create user koreait(계정명) identified by 0000(비밀번호); 엔터 => 11
+SQL> create user C##koreait(계정명) identified by 0000(비밀번호); 엔터 => 12
+User created.
+
+※ 계정에 권한 부여하기
+SQL> grant connect(접속), resource(데이터 관리) to scott; 엔터
+Grant succeeded.
+
+alter user 유저계정명 default tablespace users quota unlimited on users; => 12
+
+오라클 11 SID => xe
+오라클 12 SID => orcl
