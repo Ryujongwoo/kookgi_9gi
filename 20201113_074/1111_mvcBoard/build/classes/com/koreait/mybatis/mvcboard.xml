@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.vo.MvcboardVO">
+
+	<!-- 메인글을 저장한다. -->
+	<insert id="insert" parameterType="vo">
+		insert into mvcboard (idx, name, subject, content, ref, lev, seq) 
+		values (mvcboard_idx_seq.nextval, #{name}, #{subject}, #{content}, mvcboard_idx_seq.currval, 0, 0)
+	</insert>
+	
+	<!-- 테이블에 저장된 전체 글의 개수를 얻어온다. -->
+	<select id="selectCount" resultType="int">
+		select count(*) from mvcboard
+	</select>
+	
+	<!-- 1페이지 분량의 글 목록을 얻어온다. -->
+	<select id="selectList" parameterType="java.util.HashMap" resultType="vo">
+		<![CDATA[
+			select * from (
+				select rownum rnum, GG.* from (
+					select * from mvcboard order by ref desc, seq asc
+				) GG where rownum <= #{endNo}
+			) where rnum >= #{startNo}
+		]]>
+	</select>
+	
+	<!-- 조회수를 증가시킨다. -->
+	<update id="increment" parameterType="int">
+		update mvcboard set hit = hit + 1 where idx = #{idx}
+	</update>
+	
+	<!-- 글 1건을 얻어온다. -->
+	<select id="selectByIdx" parameterType="int" resultType="vo">
+		select * from mvcboard where idx = #{idx}
+	</select>
+	
+	<!-- 글 1건을 삭제한다. -->
+	<delete id="delete" parameterType="int">
+		delete from mvcboard where idx = #{idx}
+	</delete>
+	
+	<!-- 글 1건을 수정한다. -->
+	<update id="update" parameterType="vo">
+		update mvcboard set subject = #{subject}, content = #{content} where idx = #{idx}
+	</update>
+	
+	<!-- 답글이 삽입될 위치를 확보하기 위해 조건에 만족사는 seq를 1씩 증가시킨다. -->
+	<update id="incrementSeq" parameterType="java.util.HashMap">
+		update mvcboard set seq = seq + 1 where ref = #{ref} and seq >= #{seq}
+	</update>
+	
+	<!-- 답글을 저장한다. -->
+	<insert id="insertReply" parameterType="vo">
+		insert into mvcboard (idx, name, subject, content, ref, lev, seq) 
+		values (mvcboard_idx_seq.nextval, #{name}, #{subject}, #{content}, #{ref}, #{lev}, #{seq})
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
