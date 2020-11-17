@@ -1,0 +1,73 @@
+@charset "UTF-8";
+/* 나눔고딕 웹 폰트를 불러온다. */
+@import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
+@import url("http://fonts.googleapis.com/earlyaccess/hanna.css");
+@import url("http://fonts.googleapis.com/earlyaccess/notosanskr.css");
+
+* {
+	font-family: 'Nanum Gothic'
+}
+
+thead th {
+	background-color: #006DCC;
+	color: white;
+	text-align: center;
+}
+
+/* 아래 주석으로 처리한 부분은 배경색이 없으면 크롬에서 적용되지 않는다. */
+/*
+tr th:first-child, tr td:first-child {
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+tr th:last-child, tr td:last-child {
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+*/
+
+h5 {
+	font-family: 'Noto Sans KR';
+	font-size: 15px;
+}
+
+h4 {
+	font-family: 'Noto Sans KR';
+}
+
+h3, h2, h1 {
+	font-family: 'Nanna';
+}
+
+.vertical-alignment-helper {
+	display: table;
+	height: 100%;
+	width: 100%;
+	pointer-events: none;
+}
+
+.vertical-align-center {
+	display: table-cell;
+	vertical-align: middle;
+	pointer-events: none;
+}
+
+.modal-content {
+	width: inherit;
+	height: inherit;
+	margin: 0 auto;
+	pointer-events: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
