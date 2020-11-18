@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="student" class="com.koreait.springDI3_xml_constructor.Student">
+	
+		<!-- constructor-arg 태그를 사용해서 생성자의 인수로 멤버 변수를 초기화 시킬 데이터를 전달한다. -->
+		<!-- property 태그는 setter를 실행할 때 멤버 변수의 이름을 지정할 수 있으므로 순서가 중요하지 않다. -->
+		<!-- constructor-arg 태그를 사용할 때 생성자의 인수 개수와 데이터 타입의 순서를 일치시켜야 한다. -->
+		<constructor-arg>
+			<value>홍길동</value>
+		</constructor-arg>
+		<constructor-arg value="10"/>
+		<constructor-arg value="3"/>
+		<constructor-arg value="5"/>
+	
+	</bean>
+	
+	<bean id="studentInfo" class="com.koreait.springDI3_xml_constructor.StudentInfo">
+		<!--
+		<constructor-arg>
+			<ref bean="student"/>
+		</constructor-arg>
+		-->
+		<constructor-arg ref="student"/>
+	</bean>
+
+</beans>

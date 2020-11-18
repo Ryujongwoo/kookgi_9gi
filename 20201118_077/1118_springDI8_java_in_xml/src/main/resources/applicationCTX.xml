@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="student2" class="com.koreait.springDI8_java_in_xml.Student">
+		<constructor-arg value="홍길동"/>
+		<constructor-arg value="20"/>
+		<constructor-arg>
+			<list>
+				<value>등산</value>
+				<value>바둑</value>
+				<value>낚시</value>
+			</list>
+		</constructor-arg>
+		<property name="height" value="173"/>
+		<property name="weight" value="70"/>
+	</bean>
+
+</beans>
+
+
+
+

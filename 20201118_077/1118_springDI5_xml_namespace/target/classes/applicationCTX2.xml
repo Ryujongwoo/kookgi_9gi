@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="student4" class="com.koreait.springDI5_xml_namespace.Student">
+		<constructor-arg value="장길산"/>
+		<constructor-arg value="48"/>
+		<constructor-arg>
+			<list>
+				<value>당구</value>
+				<value>골프</value>
+				<value>볼링</value>
+			</list>
+		</constructor-arg>
+		<property name="height" value="165"/>
+		<property name="weight" value="85"/>
+	</bean>
+
+	<!-- c namespace와 p namespace를 사용하지 않고 Family 클래스의 bean 설정 -->
+	<!--
+	<bean id="family" class="com.koreait.springDI5_xml_namespace.Family">
+		<constructor-arg value="홍아빠"/>
+		<constructor-arg value="홍엄마"/>
+		<property name="sisterName" value="홍언니"/>
+		<property name="brotherName" value="홍오빠"/>
+	</bean>
+	-->
+	
+	<!-- c namespace와 p namespace를 사용해서 Family 클래스의 bean 설정 -->
+	<!--
+		c namespace와 p namespace를 사용하려면 코드 편집창 맨 아래의 Source를 Namespace로 변경하고 c namespace와 p namespace에
+		체크한 후 Source로 돌아오면 beans 태그에 아래의 내용이 자동으로 입력되는 것을 확인한 후 사용하면 된다.
+		xmlns:c="http://www.springframework.org/schema/c"
+		xmlns:p="http://www.springframework.org/schema/p"
+	-->
+	<bean id="family" class="com.koreait.springDI5_xml_namespace.Family" 
+		c:papaName="홍아빠" 
+		c:mamiName="홍엄마"
+		p:sisterName="홍언니"
+		p:brotherName="홍오빠"
+	/>
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
