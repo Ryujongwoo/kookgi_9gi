@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	profile="dev">
+
+	<bean id="serverInfo" class="com.koreait.springProfile1_xml.ServerInfo">
+		<property name="ipNumber" value="localhost"/>
+		<property name="portNumber" value="9090"/>
+	</bean>
+
+</beans>
