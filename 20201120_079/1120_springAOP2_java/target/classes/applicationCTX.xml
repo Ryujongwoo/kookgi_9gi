@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+	<!-- AOP 설정 -->
+	<!-- pom.xml 파일에 aspectjweaver dependency를 추가한다. -->
+	<!-- bean 설정 xml 파일에서 aop namespace를 추가한다. => xmlns:aop="http://www.springframework.org/schema/aop"가 추가된다. -->
+	<!-- java 파일에서 @Aspect 어노테이션을 붙여서 AOP를 설정한 정보를 읽어오기 위해서 <aop:aspectj-autoproxy/> 태그를 입력한다. -->
+	<aop:aspectj-autoproxy/>
+	
+	<!-- AOP 메소드와 설정이 저장된 @Aspect 어노테이션을 붙여준 클래스의 bean을 만든다. -->
+	<bean id="logAop" class="com.koreait.springAOP2_java.LogAOP"/>
+
+	<!-- Student 클래스의 bean -->
+	<bean id="student" class="com.koreait.springAOP2_java.Student">
+		<property name="name" value="홍길동"/>
+		<property name="age" value="13"/>
+		<property name="gradeNum" value="6"/>
+		<property name="classNum" value="10"/>
+	</bean>
+	
+	<!-- Worker 클래스의 bean -->
+	<bean id="worker" class="com.koreait.springAOP2_java.Worker">
+		<constructor-arg value="임꺽정"/>
+		<constructor-arg value="35"/>
+		<constructor-arg value="산적"/>
+	</bean>
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
