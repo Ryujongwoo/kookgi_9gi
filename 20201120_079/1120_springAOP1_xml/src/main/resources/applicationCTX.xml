@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+
+	<!-- Student 클래스의 bean -->
+	<bean id="student" class="com.koreait.springAOP1_xml.Student">
+		<property name="name" value="홍길동"/>
+		<property name="age" value="13"/>
+		<property name="gradeNum" value="6"/>
+		<property name="classNum" value="10"/>
+	</bean>
+	
+	<!-- Worker 클래스의 bean -->
+	<bean id="worker" class="com.koreait.springAOP1_xml.Worker">
+		<constructor-arg value="임꺽정"/>
+		<constructor-arg value="35"/>
+		<constructor-arg value="산적"/>
+	</bean>
+	
+	<!-- Test 클래스의 bean -->
+	<bean id="test" class="test.Test"/>
+
+	<!-- AOP 설정 준비 사항 -->
+	<!-- pom.xml 파일에 aspectjweaver dependency를 추가해야 한다. -->
+	<!-- bean 설정 xml 파일에 aop namespace를 추가한다. => beans 태그에 xmlns:aop="http://www.springframework.org/schema/aop"가 추가된다. -->
+	
+	<!-- AOP 메소드가 작성된 클래스의 bean을 생성한다. -->
+	<bean id="logAop" class="com.koreait.springAOP1_xml.LogAOP"/>
+
+	<!-- aop:config 태그 내부에 aop:aspect 태그로 공통 기능 메소드를 정의한다. -->
+	<aop:config> <!-- AOP 설정 시작 -->
+	
+		<!-- id 속성으로 AOP 메소드가 정의된 클래스를 식별한다. => 식별만 가능하면 되기 때문에 뭐를 적어도 상관없다. -->
+		<!-- ref 속성은 AOP 메소드가 정의된 bean을 참조시킨다. => AOP 메소드가 정의된 bean의 id 속성의 값을 쓴다. -->
+		<aop:aspect id="logger" ref="logAop"> <!-- 실행할 AOP 메소드가 정의된 클래스를 지정한다. -->
+		
+		
+			<!-- aop:pointcut 태그에서 공통 기능이 적용되는 부분(pointcut)을 지정한다. -->
+			<!-- expression 속성은 within() 또는 execution()을 사용해서 pointcut을 지정한다. -->
+			<!-- within()은 클래스 단위로 pointcut을 지정하고 execution()는 메소드 단위로 pointcut을 지정한다. -->
+			<!-- id 속성은 pointcut을 식별하기만 하면 되기 때문에 뭐를 적어도 상관없다. -->
+			
+			<!--
+				within(*) => 프로젝트의 모든 클래스 AOP가 적용된다.
+				within(test.*) => test 패키지의 모든 클래스에 AOP가 적용된다.
+				within(com.koreait.springAOP1_xml.*) => com.koreait.springAOP1_xml 패키지의 모든 클래스에 AOP가 적용된다.
+				within(com.koreait.springAOP1_xml.Student) => com.koreait.springAOP1_xml 패키지의 Student 클래스에 AOP가 적용된다.
+				within(com.koreait.springAOP1_xml.Worker) => com.koreait.springAOP1_xml 패키지의 Worker 클래스에 AOP가 적용된다.
+				within(com.koreait.springAOP1_xml.*e*) => com.koreait.springAOP1_xml 패키지의 e를 포함하는 클래스에 AOP가 적용된다.
+					=> W* : W로 시작하는, *W : W로 끝나는, *W* : W를 포함하는
+			-->
+			
+			<!--
+				execution() => () 안에 "*"을 먼저 입력하고 1칸 띄운 후 pointcut을 지정한다.
+				execution(* *.*()) => 프로젝트의 모든 클래스의 모든 메소드에 AOP가 적용된다.
+				execution(* test.*.*()) => test 패키지의 모든 클래스의 모든 메소드에 AOP가 적용된다.
+				execution(* com.koreait.springAOP1_xml.*.*()) => com.koreait.springAOP1_xml 패키지의 모든 클래스의 모든 메소드에 AOP가 적용된다.
+				execution(* com.koreait.springAOP1_xml.Student.*())
+					=> com.koreait.springAOP1_xml 패키지의 Student 클래스의 모든 메소드에 AOP가 적용된다.
+				execution(* com.koreait.springAOP1_xml.W*.*())
+					=> com.koreait.springAOP1_xml 패키지의 W로 시작하는 클래스의 모든 메소드에 AOP가 적용된다.
+				execution(* com.koreait.springAOP1_xml.Student.a*())
+					=> com.koreait.springAOP1_xml 패키지의 Student 클래스의 a로 시작하는 모든 메소드에 AOP가 적용된다.
+			-->
+			
+			<aop:pointcut expression="within(*)" id="beforeMethod"/>
+			<aop:pointcut expression="within(com.koreait.springAOP1_xml.*)" id="afterreturningMethod"/>
+			<aop:pointcut expression="within(com.koreait.springAOP1_xml.Student)" id="afterthrowingMethod"/>
+			<aop:pointcut expression="execution(* com.koreait.springAOP1_xml.*.*())" id="afterMethod"/>
+			<aop:pointcut expression="execution(* com.koreait.springAOP1_xml.Student.g*())" id="around"/>
+		
+			<!-- AOP 메소드를 실행한다. -->
+			<!-- method 속성에는 aop:aspect 태그에서 참조시킨 AOP 메소드가 작성된 클래스의 실행할 메소드 이름을 적는다. -->
+			<!-- pointcut-ref 속성에는 AOP를 실행할 pointcut의 id 속성에 지정한 값을 적는다. -->
+			<aop:before method="brfore" pointcut-ref="beforeMethod"/> <!-- 핵심 기능 실행 전 -->
+			<aop:after-returning method="afterreturning" pointcut-ref="afterreturningMethod"/> <!-- 핵심 기능이 정상적으로 종료된 후 -->
+			<aop:after-throwing method="afterthrowing" pointcut-ref="afterthrowingMethod"/> <!-- 핵심기능 실행 중 예외가 발생된 후 -->
+			<aop:after method="after" pointcut-ref="afterMethod"/>
+			<aop:around method="around" pointcut-ref="around"/>
+		
+		</aop:aspect>
+	
+	</aop:config> <!-- AOP 설정 끝 -->
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

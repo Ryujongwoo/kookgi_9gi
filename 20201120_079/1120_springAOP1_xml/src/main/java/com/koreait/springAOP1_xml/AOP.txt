@@ -1,0 +1,24 @@
+AOP(Aspect Oriented Programming, 관점 지향 프로그래밍)
+하나의 프로그램 내의 다양한 모듈(메소드)에서 공통적으로 실행되는 기능(공통 기능)과 특정 모듈에서만 실행되는 기능(핵심 기능)을 분리시켜서 사용하는
+것으로 핵심 기능 이외의 기능이 모듈에 응집되지 않도록 하기 위한 기술을 말한다.
+
+AOP 용어
+aspect => 공통 기능
+advice => aspect 자체를 말한다.
+joinpoint => advice를 적용해야 하는 필드(멤버 변수)나 메소드 => 스프링은 메소드에 적용하는 기능만 지원한다.
+pointcut => advice가 실제로 실행되는 부분
+
+AOP의 종류
+before => 핵심 기능이 실행되기 전에 advice를 실행한다.
+after-returning => 핵심 기능이 정상적으로 종료된 후 advice를 실행한다.
+after-throwing => 핵심 기능을 실행하는 도중에 exception이 발생되면 advice를 실행한다.
+after => 핵심 기능이 정상적으로 실행되거나 exception이 발생되는 경우를 구분하지 않고 advice를 실행한다.
+around => 핵심 기능이 실행되기 전과 실행되고 난 후 exception 발생 여부와 관계없이 advice를 실행한다. => 실행 전의 데이터가 실행 후로 넘어간다.
+
+AOP를 사용하려면 pom.xml 파일의 <dependencies> ~ </dependencies> 사이에 아래의 내용을 추가한다.
+<dependency>
+	<groupId>org.aspectj</groupId>
+	<artifactId>aspectjweaver</artifactId>
+	<version>1.8.0</version>
+	<scope>runtime</scope>
+</dependency>
