@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!--
+		url 창에 요청이 들어오면  @Controller 어노테이션을 붙여준 클래스(컨트롤러)의 @RequestMapping 어노테이션의 인수로 지정된 내용을 검색해서
+		메소드를 실행하지만 예외적으로 아래와 같이 resources 태그의 mapping 속성에 지정된 요청이 들어오면 컨트롤러 클래스를 검색하지 않고
+		resources 태그의 location 속성이 지정된 경로를 검색한다. => image, css, javascript 파일의 경로를 지정한다.
+	-->
+	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/images/**" location="/WEB-INF/images/" />
+	<resources mapping="/css/**" location="/WEB-INF/css/" />
+	<resources mapping="/js/**" location="/WEB-INF/js/" />
+	
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!--
+		컨트롤러의 @RequestMapping 어노테이션이 붙은 메소드가 리턴하는 view 페이지 이름의 앞, 뒤에 자동으로 붙여줄 내용을 지정한다.
+		@RequestMapping 어노테이션이 붙은 메소드가 리턴하는 view 페이지 이름이 "home"이라면 앞에는 prefix의 value 속성인 "/WEB-INF/views/"을
+		붙여주고 뒤에는 suffix의 value 속성인 ".jsp"를 붙여서 view 페이지의 이름과 경로를 완성한다.
+		"/WEB-INF/views/" + "home" + ".jsp" => "/WEB-INF/views/home.jsp" => view 페이지의 경로와 이름이 된다.
+	-->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" /> <!-- view 페이지 이름 앞에 자동으로 붙여질 내용 -->
+		<beans:property name="suffix" value=".jsp" />			 <!-- view 페이지 이름 뒤에 자동으로 붙여질 내용 -->
+	</beans:bean>
+	
+	<!--
+		base-package는 프로젝트를 생성할 때 스프링이 자동으로 만들어주는 패키지로 @Controller 어노테이션을 붙여준 컨트롤러 클래스 파일을
+		읽어들이는 기본 위치가 된다.
+		@Controller 어노테이션이 붙어있다 해서 모두 컨트롤러로 인식되는 것이 아니고 base-package에 위치한 @Controller 어노테이션이 붙이있는
+		클래스만 컨트롤러로 인식된다.
+	-->
+	<context:component-scan base-package="com.koreait.springMVCSample2" />
+	
+	
+	
+</beans:beans>
