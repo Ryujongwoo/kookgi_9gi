@@ -1,0 +1,94 @@
+Servers 폴더의 context.xml에 아래의 내용을 복사해 넣는다.
+<!--
+	name : DBCP 이름, 커넥션 풀 이름, "jdbc/"는 항상 똑같이 쓰고 "/" 뒤에 커넥션 풀 이름을 적는다.
+	type : 데이테베이스 연결에 사용할 자바 클래스 이름, 반드시 이 클래스를 사용해야 한다.
+	auth : DBCP를 톰캣이 관리한다는 의미로 Container라 적어준다.
+	maxActive : 데이터베이스 연결 풀의 최대값, 최대 연결 허용 개수
+	maxIdle : 접속을 유지하는 데이터베이스 연결 풀의 최대 개수, 항상 연결을 유지하는 풀의 개수
+	maxWait : 데이터베이스 접속을 위해서 기다리는 최대 시간, -1을 쓰면 대기 시간 없이 바로 접속한다.
+	username : 사용자 계정
+	password : 사용자 비밀번호
+	driverClassName : 데이터베이스 드라이버 클래스 이름
+	url : 데이터베이스 접속을 위한 경로
+-->
+<Resource
+	name = "jdbc/oracle"							
+	auth = "Container"
+	type = "javax.sql.DataSource"
+	maxActive = "50"
+	maxIdle = "20"
+	maxWait = "-1"
+	url = "jdbc:oracle:thin:@localhost:1521:xe"
+	driverClassName = "oracle.jdbc.driver.OracleDriver"
+	username = "koreait"
+	password = "0000"
+/>
+
+pom.xml
+
+<repositories>
+	<repository>
+		<id>oracle</id>
+		<name>ORACLE JDBC Repository</name>
+		<url>http://maven.jahia.org/maven2</url>
+	</repository>
+</repositories>
+
+<dependencies>
+	<!-- MYSQL -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.39</version>
+	</dependency>
+
+	<!-- oracle -->
+	<dependency>
+		<groupId>com.oracle</groupId>
+		<artifactId>ojdbc6</artifactId>
+		<version>12.1.0.1</version>
+	</dependency>
+
+	<!-- spring dbcp -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+		<version>4.1.4.RELEASE</version>
+	</dependency>
+</dependencies>
+
+web.xml
+
+<resource-ref>
+	<description>DB Connection</description>
+	<res-ref-name>jdbc/mysql</res-ref-name>
+	<res-type>javax.sql.DataSource</res-type>
+	<res-auth>Container</res-auth>
+</resource-ref>
+
+<resource-ref>
+	<description>DB Connection</description>
+	<res-ref-name>jdbc/oracle</res-ref-name>
+	<res-type>javax.sql.DataSource</res-type>
+	<res-auth>Container</res-auth>
+</resource-ref>
+
+DAO 클래스에 아래의 내용을 코딩한다.
+
+DataSource dataSource;
+
+public MvcboardDAO() {
+	try {
+		Context context = new InitialContext();
+		dataSource = (DataSource) context.lookup("java:/comp/env/jdbc/oracle");
+	} catch (NamingException e) {
+		e.printStackTrace();
+		System.out.println("연결실패!!!");
+	}
+}
+
+
+
+
+
+
