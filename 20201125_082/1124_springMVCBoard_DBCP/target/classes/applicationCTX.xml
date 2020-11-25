@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- MvcboardVO 클래스의 bean을 만든다. -->
+	<bean id="mvcboardVO" class="com.koreait.vo.MvcboardVO"/>
+	<!-- MvcboardList 클래스의 bean을 만든다. -->
+	<bean id="mvcboardList" class="com.koreait.vo.MvcboardList"/>
+
+	<!-- Service 클래스의 bean을 만든다. -->
+	<bean id="insert" class="com.koreait.service.InsertService"/>
+	<bean id="select" class="com.koreait.service.SelectService"/>
+	<bean id="increment" class="com.koreait.service.IncrementService"/>
+	<bean id="contentView" class="com.koreait.service.ContentViewService"/>
+	<bean id="delete" class="com.koreait.service.DeleteService"/>
+	<bean id="update" class="com.koreait.service.UpdateService"/>
+
+	<!-- MvcboardDAO 클래스의 bean을 만든다. -->
+	<bean id="mvcboardDAO" class="com.koreait.dao.MvcboardDAO"/>
+
+</beans>
+
+
+
+
+
