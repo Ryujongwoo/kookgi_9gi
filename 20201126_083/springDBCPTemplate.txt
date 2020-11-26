@@ -1,0 +1,65 @@
+pom.xml의 <dependencies> 태그 위에 오라클 외부 저장소 설정을 추가한다.
+<!-- 오라클 드라이버 외부 저장소 설정 -->
+<repositories>
+	<repository>
+		<id>oracle</id>
+		<name>ORACLE JDBC Repository</name>
+		<url>http://maven.jahia.org/maven2</url>
+	</repository>
+</repositories>
+
+pom.xml의 <dependencies> 태그에 아래의 dependency를 <!-- spring --> 맨 끝에 추가한다.
+<!-- oracle -->
+<dependency>
+	<groupId>com.oracle</groupId>
+	<artifactId>ojdbc6</artifactId>
+	<version>12.1.0.1</version>
+</dependency>
+<!-- spring dbcp -->
+<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-jdbc</artifactId>
+	<version>4.1.4.RELEASE</version>
+</dependency>
+=======================================================================================================
+
+servlet-context.xml에 dbcp template을 사용하기 위한 bean을 추가한다.
+<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+	<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+	<beans:property name="username" value="koreait"/>
+	<beans:property name="password" value="0000"/>
+</beans:bean>
+	
+<beans:bean name="template" class="org.springframework.jdbc.core.JdbcTemplate">
+	<beans:property name="dataSource" ref="dataSource"/>
+</beans:bean>
+=======================================================================================================
+
+컨트롤러에 JDBC 템플릿을 추가한다.
+컨트롤러에 JdbcTemplate 객체(멤버 변수)를 선언하고 getter, setter를 추가한다.
+public JdbcTemplate template;
+
+자동으로 setter가 호출되게 하기 위해서 @Autowired 어노테이션을 추가한다.
+@Autowired
+public void setTemplate(JdbcTemplate template) {
+	this.template = template;
+//	Constant 클래스를 만든 다음에 해야한다.
+	Constant.template = this.template;
+}
+=======================================================================================================
+
+적당한 패키지(kr.koreait.springMVCBoard_DBCP)에 클래스(Constant)를 만든다.
+생성한 클래스에 아래와 같이 정적 멤버를 추가한다.
+public static JdbcTemplate template;
+
+DAO 클래스에 JdbcTemplate 객체를 멤버로 생성한다.
+JdbcTemplate template;
+DAO 클래스의 생성자에 아래와 같이 내용을 추가한다.
+template = Constant.template;
+
+
+
+
+
+
