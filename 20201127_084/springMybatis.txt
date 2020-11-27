@@ -1,0 +1,91 @@
+pom.xml
+
+<!-- 오라클 드라이버 외부 저장소 설정 -->
+<repositories>
+	<repository>
+		<id>oracle</id>
+		<name>ORACLE JDBC Repository</name>
+		<url>http://maven.jahia.org/maven2</url>
+	</repository>
+</repositories>
+
+<!-- oracle -->
+<dependency>
+	<groupId>com.oracle</groupId>
+	<artifactId>ojdbc6</artifactId>
+	<version>12.1.0.1</version>
+</dependency>
+
+<!-- spring dbcp -->
+<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-jdbc</artifactId>
+	<version>4.1.4.RELEASE</version>
+</dependency>
+
+<!-- mybatis -->
+<dependency>
+	<groupId>org.mybatis</groupId>
+	<artifactId>mybatis</artifactId>
+	<version>3.2.8</version>
+</dependency>
+
+<dependency>
+	<groupId>org.mybatis</groupId>
+	<artifactId>mybatis-spring</artifactId>
+	<version>1.2.2</version>
+</dependency>
+
+servlet-context.xml
+
+<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+	<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+	<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+	<beans:property name="username" value="koreait"/>
+	<beans:property name="password" value="0000"/>
+</beans:bean>
+	
+<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<beans:property name="dataSource" ref="dataSource"></beans:property>
+	<beans:property name="mapperLocations" value="classpath:kr/koreait/mybatisboard/Mapper/*.xml"></beans:property>
+</beans:bean>
+	
+<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	<beans:constructor-arg index="0" ref="sqlSessionFactory"></beans:constructor-arg>
+</beans:bean>
+
+실행할 sql 명령이 저장된 xml 파일의 namespace에는 반드시 mapper 역할을 하는
+인터페이스의 이름을 풀 패키지 이름과 같이 적어야 한다.
+
+컨트롤러에 아래의 내용을 코딩한다.
+sqlSession에는 스프링이 알아서 servlet-context.xml에서 선언된 mybatis mapper를
+선언한 SqlSession 인터페이스 객체에 넣어준다.
+@Autowired
+public SqlSession sqlSession;
+
+=======================================================================================================
+
+typeAliases 설정하기
+
+resources 폴더에 적당한 이름(mybatis-config.xml)의 xml 파일을 만들어 아래의 내용을 코딩한다.
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="mvcboard" type="kr.koreait.vo.MvcboardVO"/>
+	</typeAliases>
+</configuration>
+
+servlet-context.xml 파일의 SqlSessionFactoryBean 클래스 bean 설정에 아래의 내용을 추가로 코딩한다.
+<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<beans:property name="dataSource" ref="dataSource"></beans:property>
+	<beans:property name="mapperLocations" value="classpath:kr/koreait/dao/*.xml"></beans:property>
+	<beans:property name="configLocation" value="classpath:mybatis-config.xml"></beans:property> <!-- 요거를 코딩한다. -->
+</beans:bean>
+
+
+
+
+
+
+
