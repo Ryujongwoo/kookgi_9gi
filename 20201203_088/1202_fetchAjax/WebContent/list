@@ -1,0 +1,5 @@
+<li><a href="#!1" onclick="fetchAjax('1')">1절 가사</a></li>
+<li><a href="#!2" onclick="fetchAjax('2')">2절 가사</a></li>
+<li><a href="#!3" onclick="fetchAjax('3')">3절 가사</a></li>
+<li><a href="#!4" onclick="fetchAjax('4')">4절 가사</a></li>
+<li><a href="#!5" onclick="fetchAjax('5')">5절 가사</a></li>

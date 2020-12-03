@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	a {
+		color: #000000;
+		text-decoration: none;
+	}
+	ol {
+		float: left;
+		background-color: hotpink;
+		width: 150px;
+	}
+	div {
+		position: absolute;
+		background-color: tomato;
+		margin-left: 200px;
+		top: 88px;
+		width: 800px;
+		padding-left: 20px;
+	}
+
+</style>
+
+</head>
+<body>
+
+<h2>한국을 빛낸 100명의 위인들</h2>
+
+<!-- 중복되는 코드가 여러 번 나온다. => 중복되는 부분을 함수로 만든다. -->
+<ol>
+	<li>
+		<a onclick="
+			fetch('1').then(function(response) {
+				response.text().then(function(text) {
+					document.querySelector('div').innerHTML = text;
+				});
+			});
+		">
+			1절 가사
+		</a>
+	</li>
+	<li>
+		<a onclick="
+			fetch('2').then(response => response.text())
+				.then(text => {
+					document.querySelector('div').innerHTML = text;
+			});
+		">
+			2절 가사
+		</a>
+	</li>
+	<li>
+		<a onclick="
+			fetch('3').then(response => response.text())
+				.then(text => {
+					document.querySelector('div').innerHTML = text;
+			});
+		">
+			3절 가사
+		</a>
+	</li>
+	<li>
+		<a onclick="
+			fetch('4').then(response => response.text())
+				.then(text => {
+					document.querySelector('div').innerHTML = text;
+			});
+		">
+			4절 가사
+		</a>
+	</li>
+	<li>
+		<a onclick="
+			fetch('5').then(response => response.text())
+				.then(text => {
+					document.querySelector('div').innerHTML = text;
+			});
+		">
+			5절 가사
+		</a>
+	</li>
+</ol>
+
+<div>
+	jk;fsdl;kfsdlk;fdskl;dfsl;dfsl;k
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

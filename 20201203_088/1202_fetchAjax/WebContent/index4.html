@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	a {
+		color: #000000;
+		text-decoration: none;
+	}
+	ol {
+		float: left;
+		background-color: hotpink;
+		width: 150px;
+	}
+	div {
+		position: absolute;
+		background-color: tomato;
+		margin-left: 200px;
+		top: 88px;
+		width: 800px;
+		padding-left: 20px;
+	}
+
+</style>
+
+<script type="text/javascript">
+
+//	중복되는 부분을 함수로 만든다.
+	function fetchAjax(pageName) {
+		fetch(pageName).then(response => response.text())
+				.then(text => {
+				document.querySelector('div').innerHTML = text;
+		});
+	}
+
+	onload = function() {
+//		페이지가 로드되거나 새로고침 될 때 해시가 없으면 summary 파일에 저장된 내용을 표시하고 hash가 있으면 지정된 파일의 내용을 표시한다.
+//		location.hash : 클릭된 하이퍼링크에 붙여준 hash를 얻어온다. 주소창에 hash가 있으면 true, 없으면 false를 리턴한다.
+//		console.log(location.hash);
+//		console.log(location.hash.substring(2));
+		if (location.hash) { // 주소 창에 hash가 있는가?
+			fetchAjax(location.hash.substring(2));
+		} else {
+			fetchAjax('summary');
+		}
+	}
+
+</script>
+
+</head>
+<body>
+
+<h2><a href="#!summary" onclick="fetchAjax('summary')">한국을 빛낸 100명의 위인들</a></h2>
+
+<ol>
+	<!-- hash 사용 -->
+	<!-- html은 #(hash)은 북마크 기능이 있으므로 다른 북마크와 구별하기 위해 #뒤에 !(뱅)를 붙여준다. -->
+	<li><a href="#!1" onclick="fetchAjax('1')">1절 가사</a></li>
+	<li><a href="#!2" onclick="fetchAjax('2')">2절 가사</a></li>
+	<li><a href="#!3" onclick="fetchAjax('3')">3절 가사</a></li>
+	<li><a href="#!4" onclick="fetchAjax('4')">4절 가사</a></li>
+	<li><a href="#!5" onclick="fetchAjax('5')">5절 가사</a></li>
+</ol>
+
+<div></div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

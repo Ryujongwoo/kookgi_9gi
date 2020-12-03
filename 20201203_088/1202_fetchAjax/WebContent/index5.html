@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+	a { color: #000000; text-decoration: none; }
+	ol#normal { float: none; background-color: hotpink; width: 150px; }
+	ol#list { float: none; background-color: skyblue; width: 150px; }
+	ol#list2 { float: left; background-color: MediumTurquoise ; width: 150px; }
+	div { position: absolute; background-color: tomato; margin-left: 200px; top: 72px; width: 800px; padding-left: 20px; }
+
+</style>
+
+<!-- fetch ajax가 지원되지 않는 브라우저(IE11)를 위해 아래 cdn 2줄을 추가한다. -->
+<script src=https://cdn.jsdelivr.net/npm/promise-polyfill@8.1/dist/polyfill.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/whatwg-fetch@3.0/dist/fetch.umd.min.js></script>
+
+<script type="text/javascript">
+
+	function fetchAjax(pageName) {
+		fetch(pageName).then(function(response) {
+			response.text().then(function(text) {
+				document.querySelector('div').innerHTML = text;
+			});
+		});
+		/*
+//		fetch ajax를 화살표 함수로 구현한 경우에는 cdn을 추가해도 IE11에서 실행되지 않는다.
+		fetch(pageName).then(response => response.text())
+				.then(text => {
+				document.querySelector('div').innerHTML = text;
+		});
+		*/
+	}
+
+	onload = function() {
+		if (location.hash) {
+			fetchAjax(location.hash.substring(2));
+		} else {
+			fetchAjax('summary');
+		}
+		
+//		'list' 파일의 내용을 읽어 <ol> 태그에 넣어주는 fetch ajax
+		fetch('list').then(function(res) {
+			res.text().then(function(data) {
+				document.querySelector('#list').innerHTML = data;
+			});
+		});
+		
+//		'list2' 파일의 내용을 읽어 <ol> 태그에 넣어주는 fetch ajax
+		fetch('list2').then(function(res) {
+			res.text().then(function(data) {
+				
+//				console.log('list2 파일의 전체 텍스트 : ' + data);
+//				','를 경계로 문자열을 분리한다.
+				var obj = data.split(',');
+//				console.log('","로 분리된 배열 전체 : ' + obj);
+				
+				var items = '';
+				for (var i = 0; i < obj.length; i++) {
+//					console.log('obj[' + i + '] = ' + obj[i]);
+//					<li><a href="#!1" onclick="fetchAjax('1')">1절 가사</a></li>
+					var item = '<li><a href="#!' + (i + 1) + '" onclick="fetchAjax(\'' + (i + 1) + '\')">' + obj[i] + '</a></li>';
+//					console.log(item);
+					items += item;
+				}
+				document.querySelector('#list2').innerHTML = items;
+				
+			});
+		});
+	}
+
+</script>
+
+</head>
+<body>
+
+<h2><a href="#!summary" onclick="fetchAjax('summary')">한국을 빛낸 100명의 위인들</a></h2>
+
+<ol id="normal">
+	<li><a href="#!1" onclick="fetchAjax('1')">1절 가사</a></li>
+	<li><a href="#!2" onclick="fetchAjax('2')">2절 가사</a></li>
+	<li><a href="#!3" onclick="fetchAjax('3')">3절 가사</a></li>
+	<li><a href="#!4" onclick="fetchAjax('4')">4절 가사</a></li>
+	<li><a href="#!5" onclick="fetchAjax('5')">5절 가사</a></li>
+</ol>
+
+<ol id="list"></ol>
+
+<ol id="list2"></ol>
+
+<div></div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

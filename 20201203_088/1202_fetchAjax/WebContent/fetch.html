@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<input type="button" value="1절" onclick="
+//	fetch('1') => 서버에게 '1' 파일을 요청하고 서버에서 응답이 돌아오면 then 내부의 익명 함수를 실행한다.
+//	서버가 응답하면 응답한 결과가 then 내부 익명 함수의 인수로 전달된다.
+	fetch('1').then(function(response) {
+//		alert('응답완료!!!');
+//		console.log('응답완료!!!');
+//		text() => 서버가 응답하면서 넘겨준 response 객체에서 문자열을 얻어온다.
+//		console.log(response.text());
+//		서버가 응답하면서 넘겨준 response 객체에서 문자열을 얻어오고 얻어온 문자열을 then 내부 익명 함수의 인수로 넘겨서 익명 함수를 실행한다.
+		response.text().then(function(text) {
+//			console.log(text);
+			document.querySelector('div').innerHTML = text;
+		});
+	});
+"/>
+
+<input type="button" value="2절" onclick="
+	fetch('2').then(function(response) {
+		response.text().then(function(text) {
+			document.querySelector('div').innerHTML = text;
+		});
+	});
+"/>
+
+<input type="button" value="3절" onclick="
+	fetch('3').then(response => response.text())
+			  .then(text => {
+				  document.querySelector('div').innerHTML = text;
+			  });
+"/>
+
+<input type="button" value="4절" onclick="
+
+	function callback() {
+		console.log('callback()');
+	}
+
+//	then 내부에서 요청이 완료되면 실행할 콜백 함수를 실행할 수 있다.
+	fetch('4').then(response => response.text())
+			  .then(text => {
+				  document.querySelector('div').innerHTML = text;
+			  })
+			  .then(callback);
+	console.log('서버에서 응답이 올 때 까지');
+	console.log('다른 작업이 계속 실행됩니다.');
+"/>
+
+<input type="button" value="5절" onclick="
+
+	callback = function() {
+		console.log('callback()');
+	}
+
+//	then 내부에서 요청이 완료되면 실행할 콜백 함수를 실행할 수 있다.
+	fetch('5').then(response => response.text())
+			  .then(text => {
+				  document.querySelector('div').innerHTML = text;
+			  })
+			  .then(callback);
+	console.log('서버에서 응답이 올 때 까지');
+	console.log('다른 작업이 계속 실행됩니다.');
+"/>
+
+
+<input type="button" value="개요" onclick="
+	fetch('summary1').then(function(response) {
+//		console.log(response);
+//		console.log(response.status);
+		if (response.status == '404') {
+			console.log('요청한 파일이 없습니다.')
+		} else {
+			response.text().then(function(text) {
+				document.querySelector('div').innerHTML = text;
+			});
+		}
+	});
+"/>
+
+<div></div>
+
+</body>
+</html>
+
+
+
+
+
+
+
