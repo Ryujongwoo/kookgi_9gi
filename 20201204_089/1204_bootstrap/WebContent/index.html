@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!--
+	name="viewport" : 접속한 장치의 해상도에 맞게 웹 사이트를 보여여주겠다는 의미이다.
+	content="width=device-width, initial-scale=1.0" : 웹 사이트의 너비는 웹 사이트를 보는 장치 너비에 맞게 사용한다는 의미이다.
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>부트스트랩 웹 페이지</title>
+<link rel="stylesheet" href="./css/bootstrap.css">
+
+<!-- 점보트론 스타일 -->
+<style type="text/css">
+	.jumbotron {
+		background-image: url("./images/jumbotronBackground.jpg");
+		background-size: cover;
+		/* text-shadow: offset-x offset-y blur-radius color */
+		text-shadow: 0.2em 0.2em 0.2em black;
+		color: white;
+	}
+</style>
+
+</head>
+<body>
+
+<!--
+	점보트론(jumbotron)
+	대형 전광판을 의미하는 단어로 부트스트랩에서 홈페이지를 소개하는 메인 전광판이 되며 컴포넌트 중에서 가장 돋보이는 컴포넌트로 사용법도
+	간단하고 버튼 등 다양한 컴포넌트가 포함될 수 있다.
+-->
+<div class="container">
+	<div class="jumbotron">
+		<h1 class="text-center">날로 먹는 코딩 온라인 강좌 사이트</h1>
+		<p class="text-center">날로 먹는 코딩은 IT 교육 사이트입니다. 다양한 날로 먹는 IT 관련 강의가 존재합니다.</p>
+		<p class="text-center">
+			<!-- role : 개별 태그의 역할을 정의한다. -->
+			<a class="btn btn-primary btn-lg" href="#" role="button">강의 들으러 가기</a>
+		</p>
+	</div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
