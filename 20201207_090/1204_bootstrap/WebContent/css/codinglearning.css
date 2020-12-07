@@ -1,0 +1,66 @@
+/* 웹에서 외부 스타일 시트를 가져온다. */
+@import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
+
+/* 전체 영역을 통틀어서 스타일 정의 */
+* {
+	font-family: "Nanum Gothic"
+}
+a {
+	color: #000000;
+	text-decoration: none;
+}
+a:hover {
+	color: #bbbbbb;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* 내비게이션 영역 */
+.navbar-default { /* 배경 색상 */
+	background-color: #000000;
+	border-color: #000000;
+}
+.navbar-default .navbar-brand { /* 내비게이션 제목 색상 */
+	color: #ffffff;
+}
+.navbar-default .navbar-brand:hover, 
+.navbar-default .navbar-brand:focus { /* 내비게이션 제목에 마우스를 올렸을 때 */
+	background-color: transparent; /* 투명 */
+	color: #bbbbbb;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus { /* 선택된 내비게이션 */
+	background-color: #000000;
+	color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus { /* 내비게이션 글자에 마우스를 올렸을 때 */
+	color: #bbbbbb
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus { /* 드롭다운이 열렸을 때 마우스 색상 */
+	background-color: #ffffff;
+	color: #000000;
+	text-decoration: none;
+}
+.navbar-default .navbar-nav > li > a { /* 내비게이션 기본 색상 */
+	color: #ffffff;
+}
+@media (max-width: 767px) { /* 해상도가 작을 때 드롭다운 아이템에 마우스를 올렸을 때 */
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+		color: #ffffff;
+	}
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+		color: #bbbbbb;
+	}
+}
+
+
+
+
+
+
+
