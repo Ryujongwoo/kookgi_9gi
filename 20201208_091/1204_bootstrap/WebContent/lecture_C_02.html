@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./css/bootstrap.css">
+<link rel="stylesheet" href="./css/codinglearning.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.js"></script>
+
+<title>강의보기</title>
+</head>
+<body>
+
+<!-- 내비게이션 index5.html에서 그대로 복사 -->
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+	
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" 
+				aria-expanded="false">
+				<span class="sr-only"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index5.html">날로먹는 코딩</a>
+		</div>
+	
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		
+			<ul class="nav navbar-nav">
+				<li class="active">
+					<a href="index5.html">소개</a>
+				</li>
+				<li>
+					<a href="instructor.html">강사진</a>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						강의<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="lecture.html?lectureName=C">C언어</a></li>
+						<li><a href="lecture.html?lectureName=Java">Java</a></li>
+						<li><a href="lecture.html?lectureName=Android">Android</a></li>
+					</ul>
+				</li>
+			</ul>
+			
+			<form class="navbar-form navbar-left">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="검색 내용을 입력하세요"/>
+				</div>
+				<button type="button" class="btn btn-default">검색</button>
+			</form>
+		
+			<div class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						접속하기<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="loginForm.html">로그인</a></li>
+						<li><a href="registerForm.html">회원가입</a></li>
+					</ul>
+				</li>
+			</div>
+			
+		</div>
+	
+	</div>
+</nav>
+
+<!-- ======================================================================================================================== -->
+<!-- lecture.html에 코딩하는 내용 -->
+
+<!--
+	리스트 그룹
+	리스트 그룹은 같은 성질을 가지는 목록을 담는 하나의 그룹을 의미하는 클래스로 각각의 정보는 자유롭게 링크를 가지는 형태로 들어갈 수 있다.
+	부트스트랩에서는 단순히 클래스로 지정해주면 즉시 사용이 가능하다.
+-->
+<div class="container">
+	<div class="row">
+		<ul class="list-group">
+			<a href="lecture.html?lectureName=C" class="list-group-item">1강. Hello World</a>
+			<a href="#" class="list-group-item active">2강. 상수와 변수</a>
+			<a href="#" class="list-group-item">3강. 데이터 타입</a>
+			<a href="#" class="list-group-item">4강. 연산자</a>
+			<a href="#" class="list-group-item">5강. 제어문</a>
+		</ul>
+	</div>
+</div>
+
+<!--
+	동영상 불러오기
+	부트스트랩은 자신의 웹 사이트에 유튜브나 네이버 TV 등의 동영상을 불러오는 embed-responsive라는 클래스를 제공한다.
+	또한 자동으로 반응형 웹 디자인이 적용되어 굉장히 효율적으로 웹 사이트를 구성할 수 있다.
+-->
+<div class="container">
+	<div class="row">
+		<div class="embed-responsive embed-responsive-16by9 col-lg-12">
+			<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/LdHnIL7toH0"></iframe>
+		</div>
+	</div>
+</div>
+<br/>
+
+<div class="container">
+	<div class="row">
+		<p>두 번째 강의는 처리할 데이터를 의미하는 상수와 처리할 데이터를 저장하는 변수에 대해서 설명합니다.</p>
+<pre class="pre-scrollable">
+#incluce &lt;include&gt;	
+void main() {
+	int a = 5;
+	int b = 3;
+	int result = a + b;
+	printf("%d + %d = %d", a, b, result);
+}</pre>
+	</div>
+</div>
+
+<div class="container">
+	<hr/>
+	<form class="form-horizontal">
+		<div class="form-group">
+			<label>댓글 : </label>
+			<textarea class="form-control rows="5" id="commentContent" name="commentContent" style="resize: none;"></textarea>
+			<br/>
+			<button type="submit" class="btn pull-right">등록</button>
+		</div>
+	</form>
+	<hr/>
+</div>
+
+<!-- ======================================================================================================================== -->
+
+<!-- footer index5.html에서 그대로 복사 -->
+<footer style="background-color: #000000; color: #ffffff">
+	<div class="container">
+		<br/>
+		
+		<div class="row">
+		
+			<div class="col-sm-2" style="text-align: center;">
+				<h5>Copyright &copy; 2020</h5>
+				<h5>홍길동(Hong gil dong)</h5>
+			</div>
+			
+			<div class="col-sm-4">
+				<h5>대표자 소개</h5>
+				<h5>저는 날로 먹는 코딩의 대표 홍길동 입니다. 부트스트랩을 사용해서 웹디자인을 하고 있습니다.</h5>
+			</div>
+			
+			<div class="col-sm-2">
+				<h5 style="text-align: center;">내비게이션</h5>
+				<div class="list-group">
+					<a href="index5.html" class="list-group-item">소개</a>
+					<a href="instructor.html" class="list-group-item">강사진</a>
+					<a href="lecture.html" class="list-group-item">강의</a>
+				</div>
+			</div>
+			
+			<div class="col-sm-2">
+				<h5 style="text-align: center;">SNS</h5>
+				<div class="list-group">
+					<a href="#" class="list-group-item">페이스북</a>
+					<a href="#" class="list-group-item">유튜브</a>
+					<a href="#" class="list-group-item">네이버 TV</a>
+				</div>
+			</div>
+			
+			<div class="col-sm-2">
+				<h5 style="text-align: center;">
+					<span class="glyphicon glyphicon-ok"></span>&nbsp;by 홍길동
+				</h5>
+			</div>
+		
+		</div>
+	
+	</div>
+</footer>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

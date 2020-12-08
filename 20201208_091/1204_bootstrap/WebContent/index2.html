@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>부트스트랩 웹 페이지</title>
+<link rel="stylesheet" href="./css/bootstrap.css">
+<link rel="stylesheet" href="./css/codinglearning.css"> <!-- 부트스트랩에 없는 외부 스타일 지정 -->
+
+<style type="text/css">
+	.jumbotron {
+		background-image: url("./images/jumbotronBackground.jpg");
+		background-size: cover;
+		text-shadow: 0.2em 0.2em 0.2em black;
+		color: white;
+	}
+</style>
+
+<!-- jquery CDN과 bootstrap.js 파일의 스크립트를 사용해서 내비게이션 바가 동작한다. -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.js"></script>
+
+</head>
+<body>
+
+<!--
+	내비게이션 바
+	홈페이지의 전체적인 구성을 보여주는 역할을 하고 내비게이션을 통해서 다른 페이지로 이동하거나 사용자가 원하는 기능을 찾아서 스스로 이동할 수
+	있게 한다.
+	내비게이션 바는 일반적으로 html 소스 코드의 가장 위쪽에 위치하며 자바스크립트가 함께 사용된다.
+-->
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+	
+		<!-- 네비게이션 헤더 -->
+		<div class="navbar-header">
+			<!--
+				브라우저 크기가 작아졌을 때 내비게이션 영역의 내용이 표시되지 않고 이 버튼이 표시되며 버튼이 클릭되면 내비게이션 영역의 내용이
+				확장된다.
+				data-toggle="collapse" => 이 버튼이 클릭되면 data-target 속성에 지정한 id 속성이 지정된 영역이 확장 또는 축소된다.
+			-->
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" 
+				aria-expanded="false">
+				<!-- class="sr-only" => 큰 화면에는 표시되지 않지만 검색 엔진에서는 이 클래스가 지정된 내용을 읽어온다. -->
+				<span class="sr-only"></span>
+				<!-- class="icon-bar" => 버튼 내부에 표시할 줄의 개수 만큼 지정한다. -->
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index2.html">날로먹는 코딩</a>
+		</div>
+	
+		<!-- 내비게이션 내용 => 브라우저가 작아지면 표시되지 않다가 위의 버튼이 클릭되면 토글된다. -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		
+			<!-- 내비게이션 왼쪽에 표시할 내용 -->
+			<ul class="nav navbar-nav">
+				<li class="active"> <!-- 선택된 상태로 설정한다. -->
+					<a href="#">소개</a>
+				</li>
+				<li>
+					<a href="#">강사진</a>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						강의<span class="caret"></span> <!-- 아래쪽 화살표 아이콘을 넣어준다. -->
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="#">C언어</a></li>
+						<li><a href="#">Java</a></li>
+						<li><a href="#">Android</a></li>
+					</ul>
+				</li>
+			</ul>
+			
+			<!-- 검색 폼 -->
+			<form class="navbar-form navbar-left">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="검색 내용을 입력하세요"/>
+				</div>
+				<button type="button" class="btn btn-default">검색</button>
+			</form>
+		
+			<!-- 내비게이션 오른쪽에 표시할 내용 -->
+			<div class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						접속하기<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="loginForm.html">로그인</a></li>
+						<li><a href="registerForm.html">회원가입</a></li>
+					</ul>
+				</li>
+			</div>
+			
+		</div>
+	
+	</div>
+</nav>
+
+<div class="container">
+	<div class="jumbotron">
+		<h1 class="text-center">날로 먹는 코딩 온라인 강좌 사이트</h1>
+		<p class="text-center">날로 먹는 코딩은 IT 교육 사이트입니다. 다양한 날로 먹는 IT 관련 강의가 존재합니다.</p>
+		<p class="text-center">
+			<a class="btn btn-primary btn-lg" href="#" role="button">강의 들으러 가기</a>
+		</p>
+	</div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
